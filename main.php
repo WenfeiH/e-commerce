@@ -45,7 +45,8 @@
                         else
                             $dir = $name[0]."_".$name[1]."_".$name[2];
                         $img = "Images/".$dir."/".$dir.".jpg";
-                        $ref = "DetailedPages/".$dir."_Detail.php"; // ---------Temp?------------
+                        //$ref = "DetailedPages/".$dir."_Detail.php"; // ---------Temp?------------
+                        $ref = "./detail.php?name=" . $row['name']; 
                 ?>
                         <td>
                             <div class="pic_cell">

@@ -11,10 +11,17 @@
 		echo "Connected successfully<br />"; 
 		
 		
-		$sql = "CREATE DATABASE IF NOT EXISTS" . $database; 
+		$sql = "CREATE DATABASE IF NOT EXISTS " . $database; 
 		$link->exec($sql); 
 		echo "Database " . $database . " now exists<br />"; 
+				
+		$sql = "DROP TABLE IF EXISTS products; "; 
+		$link->exec($sql); 
+		echo "Table products has been dropped<br />"; 
 		
+		$sql = "DROP TABLE IF EXISTS sales; "; 
+		$link->exec($sql); 
+		echo "Table sales has been dropped<br />"; 
 		
 		$sql = "CREATE TABLE IF NOT EXISTS products(name VARCHAR(50) NOT NULL, releaseDate int NOT NULL, generation INT NOT NULL, price DECIMAL(10,2), platform VARCHAR(50) NOT NULL, coverPokemon VARCHAR(50) NOT NULL, IGNRating DECIMAL(10,1) NOT NULL, copiesSold DECIMAL(10,2) NOT NULL, gameRegion VARCHAR(50) NOT NULL, twinPair VARCHAR(50) NOT NULL, PRIMARY KEY (name));"; 
 		$link->exec($sql); 
