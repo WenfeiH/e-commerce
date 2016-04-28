@@ -45,10 +45,11 @@
                         else
                             $dir = $name[0]."_".$name[1]."_".$name[2];
                         $img = "Images/".$dir."/".$dir.".jpg";
+                        $ref = "DetailedPages/".$dir."_Detail.php"; // ---------Temp?------------
                 ?>
                         <td>
                             <div class="pic_cell">
-                                <a href=""><img alt="<?php echo $row['name'] ?> Image Is Not Available" src="<?php echo $img ?>"></a>
+                                <a href="<?php echo $ref ?>"><img alt="<?php echo $row['name'] ?> Image Is Not Available" src="<?php echo $img ?>"></a>
                                 <div class="container">
                                     <p class="name"><?php echo $row['name'] ?></p>
                                     <p class="rd">Release Date: <?php echo $row['releaseDate'] ?></p>
@@ -59,9 +60,8 @@
                 
                 <?php
                         $count = $count + 1;         
-                }
-                
-?>
+                    }
+                ?>
                 </tr>                
             </table>
         </div>
