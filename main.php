@@ -2,21 +2,13 @@
 <html>
     <head>
         <title>Pokemon Fans | Products</title>
-        <link href="./common.css" rel="stylesheet" />
-        <link href="./list.css" rel="stylesheet" />
+        <link href="./css/list.css" rel="stylesheet" />
         
     </head>
     
     <body>
-            
-        <div class="header">      
-            <a href="index.html" class="logo">POKEMON FANS</a>
-            <ul class="nav">
-                <li class="nav-item"><a href="index.html">Home</a></li>
-                <li class="nav-item active"><a href="list.html">Products</a></li>
-            </ul>
-        </div>            
-            
+        <?php include "header.html"?>
+        
         <div class="list">
             <table>
                 <tr>          
@@ -63,10 +55,7 @@
                 </tr>                
             </table>
         </div>
-        <div class="footer">
-            <p>University of California, Irvine, CA 92676</p>          
-            <p>&copy; 2016 Pokemon Fans.  All rights reserved.</p>
-        </div> 
-
+        
+        <?php include "footer.html"?>
     </body>
 </html>

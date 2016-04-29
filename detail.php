@@ -2,21 +2,14 @@
 <html>
 	<head>
 		<title>Pokemon Fans | Pokemon <?php $_GET['name'] ?></title>
-		<link href="./DetailedStyle.css" rel="stylesheet" />
-		<link href="./common.css" rel="stylesheet" />
-		<script src="check.js" type="text/javascript"></script>
+		<link href="./css/DetailedStyle.css" rel="stylesheet" />
+		<script src="./js/check.js" type="text/javascript"></script>
 	</head>
  
 	
 	<body>
-		<div class="header">      
-			<a href="index.html" class="logo">POKEMON FANS</a>
-			<ul class="nav">
-				<li class="nav-item"><a href="index.html">Home</a></li>
-				<li class="nav-item active"><a href="main.php">Products</a></li>
-			</ul>
-		</div>  
-		
+            <?php include "header.html"?>    
+            
 		<?php
 
 			ini_set('display_errors', 'on'); 
@@ -276,10 +269,7 @@
 			<h4>Return Policy</h4>
 			<p>If you find our product defective, unsatisfactory, or underwhelming, you have up to 30 days to return the merchandise by shipping it to our headquarters. A full refund will be given. If the customer attempts to provide false information regarding the state of the product, he or she will be charged for the original price of the merchandise.</p>
 		</div>
-		<div class="footer">
-			<p>University of California, Irvine, CA 92676</p>          
-			<p>&copy; 2016 Pokemon Fans.  All rights reserved.</p>
-		</div>        
-
+            
+            <?php include "footer.html"?>                
 	</body>
 </html>
