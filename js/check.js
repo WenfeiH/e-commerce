@@ -189,6 +189,8 @@ function check() {
             document.getElementById("holderalert").innerHTML ="";
         }
     }
+    
+    return !hasProblem; 
 
 }
 function clear_alert(){

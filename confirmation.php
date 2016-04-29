@@ -9,59 +9,59 @@
 		<table>
 			<tr>
 				<td>Quantity: </td>
-				<td><?php $_POST['quantity'] ?></td>
+				<td><?php echo $_GET['quantity'] ?></td>
 			</tr>
 			<tr>
 				<td>Name: </td>
-				<td><?php $_POST['firstName'] . $_POST['lastName'] ?></td>
+				<td><?php echo $_GET['firstName'] . $_POST['lastName'] ?></td>
 			</tr>
 			<tr>
 				<td>Email: </td>
-				<td><?php $_POST['email'] ?></td>
+				<td><?php echo $_GET['email'] ?></td>
 			</tr>
 			<tr>
 				<td>Phone Number: </td>
-				<td><?php $_POST['phoneNumber'] ?></td>
+				<td><?php echo $_GET['phoneNumber'] ?></td>
 			</tr>
 			<tr>
 				<td>Shipping Method: </td>
-				<td><?php $_POST['shippingMethod'] ?></td>
+				<td><?php echo $_GET['shippingMethod'] ?></td>
 			</tr>
 			<tr>
 				<td>Address: </td>
-				<td><?php $_POST['address1'] . $_POST['address2'] ?></td>
+				<td><?php echo $_GET['address1'] . $_POST['address2'] ?></td>
 			</tr>
 			<tr>
 				<td>Postal Code: </td>
-				<td><?php $_POST['postalCode'] ?></td>
+				<td><?php echo $_GET['postalCode'] ?></td>
 			</tr>
 			<tr>
 				<td>City: </td>
-				<td><?php $_POST['city'] ?></td>
+				<td><?php echo $_GET['city'] ?></td>
 			</tr>
 			<tr>
 				<td>State: </td>
-				<td><?php $_POST['state'] ?></td>
+				<td><?php echo $_GET['state'] ?></td>
 			</tr>
 			<tr>
 				<td>Country: </td>
-				<td><?php $_POST['country'] ?></td>
+				<td><?php echo $_GET['country'] ?></td>
 			</tr>
 			<tr>
 				<td>Card Type: </td>
-				<td><?php $_POST['card'] ?></td>
+				<td><?php echo $_GET['card'] ?></td>
 			</tr>
 			<tr>
 				<td>Card Number: </td>
-				<td><?php $_POST['cardNumber'] ?></td>
+				<td><?php echo $_GET['cardNumber'] ?></td>
 			</tr>
 			<tr>
 				<td>Security Code: </td>
-				<td><?php $_POST['securityCode'] ?></td>
+				<td><?php echo $_GET['securityCode'] ?></td>
 			</tr>
 			<tr>
 				<td>Name on Card: </td>
-				<td><?php $_POST['nameOnCard'] ?></td>
+				<td><?php echo $_GET['nameOnCard'] ?></td>
 			</tr>
 		</table>
 		

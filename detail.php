@@ -130,7 +130,7 @@
         </div>
 
 		<div class="payment">
-			<form action="confirmation.php" method="post" enctype="text/plain">
+			<form action="confirmation.php" onSubmit="return check()" method="get" enctype="text/plain">
 				<fieldset id="payment">
 					<legend><h4>Payment Information</h4></legend>
 					<table>
@@ -258,7 +258,7 @@
 					</table>   
 					
 					<div class="submit">
-						<input type="button" onclick="check()" value="Submit your Order"/>
+						<input type="submit" value="Submit your Order"/>
 					</div>         
 					
 				</fieldset>
