@@ -30,12 +30,12 @@
                         }
 
                         $dir = parseName($row['name']);
-                        $img = "Images/" . $dir . "/" . $dir . ".jpg";
                         $ref = "./detail.php?name=" . $row['name']; 
+                        $imageSource = "Images/" . $dir . "/" . $dir;
                     ?>
                     <td>
                         <div class="pic_cell">
-                            <a href="<?php echo $ref ?>"><img alt="<?php echo $row['name'] ?> Image Is Not Available" src="<?php echo $img ?>"></a>
+                            <a href="<?php echo $ref ?>"><img alt="<?php echo $row['name'] ?> Image Is Not Available" src="<?php echo $imageSource.'.jpg' ?>"></a>
                             <div class="container">
                                 <p class="name"><?php echo $row['name'] ?></p>
                                 <p class="rd">Release Date: <?php echo $row['releaseDate'] ?></p>
