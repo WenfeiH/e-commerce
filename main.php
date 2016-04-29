@@ -25,7 +25,8 @@
                 
                     ini_set('display_errors', 'on'); 
 
-                    require('credentials.php'); 
+                    require('credentials.php');
+                    require('misc.php');
                     
                     $link = new PDO("mysql:host=$hostname; dbname=$database;", $username, $password); 
                     $link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
@@ -39,13 +40,9 @@
                             <tr>
                 <?php
                         }
-                        $name = explode(" ", $row['name']);
-                        if (count($name) == 2)
-                            $dir = $name[0]."_".$name[1];
-                        else
-                            $dir = $name[0]."_".$name[1]."_".$name[2];
-                        $img = "Images/".$dir."/".$dir.".jpg";
-                        //$ref = "DetailedPages/".$dir."_Detail.php"; // ---------Temp?------------
+                        
+                        $dir = parseName($row['name']);
+                        $img = "Images/" . $dir . "/" . $dir . ".jpg";
                         $ref = "./detail.php?name=" . $row['name']; 
                 ?>
                         <td>

@@ -10,34 +10,31 @@
 	
 	<body>
 		<div class="header">      
-			<a href="../index.html" class="logo">POKEMON FANS</a>
+			<a href="index.html" class="logo">POKEMON FANS</a>
 			<ul class="nav">
-				<li class="nav-item"><a href="../index.html">Home</a></li>
-				<li class="nav-item active"><a href="../list.html">Products</a></li>
+				<li class="nav-item"><a href="index.html">Home</a></li>
+				<li class="nav-item active"><a href="main.php">Products</a></li>
 			</ul>
 		</div>  
 		
-<?php
+		<?php
 
-				ini_set('display_errors', 'on'); 
+			ini_set('display_errors', 'on'); 
 
-				require('credentials.php'); 
+			require('credentials.php');
+			require('misc.php'); 
 				
-				$link = new PDO("mysql:host=$hostname; dbname=$database;", $username, $password); 
-				$link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
+			$link = new PDO("mysql:host=$hostname; dbname=$database;", $username, $password); 
+			$link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
 				
-				$sql = "SELECT * FROM products WHERE name = '" . $_GET['name'] . "'; "; 
+			$sql = "SELECT * FROM products WHERE name = '" . $_GET['name'] . "'; "; 
 				
-				$name = explode(" ", $_GET['name']);
-				if (count($name) == 2)
-					$imageSource = "../Images/" . $name[0] . "_" . $name[1] . "/" . $name[0] . "_" . $name[1]; 
-				else
-					$imageSource = "../Images/" . $name[0] . "_" . $name[1] . "_" . $name[2] . "/" . $name[0] . "_" . $name[1] . "_" . $name[2]; 
-				
-				foreach ($link->query($sql) as $row){
+			$dir = parseName($_GET['name']);
+			$imageSource = "Images/" . $dir . "/" . $dir;
 
+			foreach ($link->query($sql) as $row) {
 
-?>      
+		?>      
 	   
 		<div class="details" >   
 			<table class="column">
@@ -104,10 +101,41 @@
 				</table>       
 			</div>
 
-<?php            
-		}      
-?>
-		
+		<?php            
+			}      
+		?>
+	
+		<div class="Suggestion" > 
+            <fieldset>
+                <legend><h4>Related items</h4></legend>
+                <table>                   
+                    <tr>
+                    	<?php
+                    		$sql = "SELECT * FROM products WHERE name <> '" . $_GET['name'] . "'; ";
+                    		$res = $link->query($sql);
+                    		$rows = $res->fetchAll();
+                    		for ($i = 0; $i < 4; $i++) {
+                    			$dir = parseName($rows[$i]['name']);
+                    			$imageSource = "Images/" . $dir . "/" . $dir . ".jpg";
+                    	?>
+
+                        <td class="columns2">
+                            <div >
+                                <a href="detail.php?name=<?php echo $rows[$i]['name'] ?>">
+                                	<img class="thumbnail2" src="<?php echo $imageSource ?>">
+                                </a>
+                            </div>
+                        </td>
+
+                        <?php
+                        	}
+                        ?>
+
+                    </tr>
+                </table>
+            </fieldset>    
+        </div>
+
 		<div class="payment">
 			<form action="confirmation.php" method="post" enctype="text/plain">
 				<fieldset id="payment">
