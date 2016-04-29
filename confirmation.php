@@ -9,59 +9,59 @@
 		<table>
 			<tr>
 				<td>Quantity: </td>
-				<td><?php echo $_GET['quantity'] ?></td>
+				<td><?php echo $_POST['quantity'] ?></td>
 			</tr>
 			<tr>
 				<td>Name: </td>
-				<td><?php echo $_GET['firstName'] . $_POST['lastName'] ?></td>
+				<td><?php echo $_POST['firstName'] . $_POST['lastName'] ?></td>
 			</tr>
 			<tr>
 				<td>Email: </td>
-				<td><?php echo $_GET['email'] ?></td>
+				<td><?php echo $_POST['email'] ?></td>
 			</tr>
 			<tr>
 				<td>Phone Number: </td>
-				<td><?php echo $_GET['phoneNumber'] ?></td>
+				<td><?php echo $_POST['phoneNumber'] ?></td>
 			</tr>
 			<tr>
 				<td>Shipping Method: </td>
-				<td><?php echo $_GET['shippingMethod'] ?></td>
+				<td><?php echo $_POST['shippingMethod'] ?></td>
 			</tr>
 			<tr>
 				<td>Address: </td>
-				<td><?php echo $_GET['address1'] . $_POST['address2'] ?></td>
+				<td><?php echo $_POST['address1'] . $_POST['address2'] ?></td>
 			</tr>
 			<tr>
 				<td>Postal Code: </td>
-				<td><?php echo $_GET['postalCode'] ?></td>
+				<td><?php echo $_POST['postalCode'] ?></td>
 			</tr>
 			<tr>
 				<td>City: </td>
-				<td><?php echo $_GET['city'] ?></td>
+				<td><?php echo $_POST['city'] ?></td>
 			</tr>
 			<tr>
 				<td>State: </td>
-				<td><?php echo $_GET['state'] ?></td>
+				<td><?php echo $_POST['state'] ?></td>
 			</tr>
 			<tr>
 				<td>Country: </td>
-				<td><?php echo $_GET['country'] ?></td>
+				<td><?php echo $_POST['country'] ?></td>
 			</tr>
 			<tr>
 				<td>Card Type: </td>
-				<td><?php echo $_GET['card'] ?></td>
+				<td><?php echo $_POST['card'] ?></td>
 			</tr>
 			<tr>
 				<td>Card Number: </td>
-				<td><?php echo $_GET['cardNumber'] ?></td>
+				<td><?php echo $_POST['cardNumber'] ?></td>
 			</tr>
 			<tr>
 				<td>Security Code: </td>
-				<td><?php echo $_GET['securityCode'] ?></td>
+				<td><?php echo $_POST['securityCode'] ?></td>
 			</tr>
 			<tr>
 				<td>Name on Card: </td>
-				<td><?php echo $_GET['nameOnCard'] ?></td>
+				<td><?php echo $_POST['nameOnCard'] ?></td>
 			</tr>
 		</table>
 		
