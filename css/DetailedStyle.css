@@ -89,20 +89,18 @@ h4 {
 	height: 60px;
 	margin-left:30%;
 }
-
 #payment{
 	background:#f4ffc5;
 	opacity: 0.8;
+}
+table{
+    width:100%;
+    margin:auto;
 }
 .textbox{
 	width:80%;
 }
 .submit {
-	margin-left:auto;
-	margin-right:auto;    
-	margin-top:16px;
 	text-align: center; 
-	width: 300px; 
-	height: 50px; 
 	border: black 1px; 
 }
