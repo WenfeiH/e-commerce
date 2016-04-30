@@ -5,6 +5,7 @@
         <link href="./css/DetailedStyle.css" rel="stylesheet" />
         <script src="./js/check.js" type="text/javascript"></script>
         <script src="./js/state.js" type="text/javascript"></script>
+        <script type="text/javascript" src="taxRate.js"></script>
     </head>
 
     <body>
@@ -16,6 +17,8 @@
 
         require('credentials.php');
         require('misc.php'); 
+        
+        $price = ""; 
 
         $sql = "SELECT * FROM products WHERE name = '".$_GET['name']."';"; 
 
@@ -23,6 +26,8 @@
         $imageSource = "Images/" . $dir . "/" . $dir;
 
         foreach ($link->query($sql) as $row) {
+            
+            $price = $row['price']; 
 
         ?>      
 
@@ -153,14 +158,14 @@
                                 </tr>  
                                 <tr>
                                     <td class="ExtraInfo1">Quantity:</td>
-                                    <td class="ExtraInfo2"><input id="quantity" name="quantity" type="number" class="textbox" value="1" min="1"/>
+                                    <td class="ExtraInfo2"><input id="quantity" name="quantity" type="number" class="textbox" value="1" min="1" onblur="getTaxRate(<?php echo $price ?>)" />
                                         <p id="quantityalert" class="alert"/></p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="ExtraInfo1">Shipping:</td>
                                     <td class="ExtraInfo2">
-                                        <select id="shipping" name="shippingMethod" class="textbox" requied />
+                                        <select id="shipping" name="shippingMethod" class="textbox" onblur="getTaxRate(<?php echo $price ?>)" requied />
                                             <option value=""></option>
                                             <option value="Overnight">Overnight</option>
                                             <option value="2-Days Expedited">2-Days Expedited</option>
@@ -199,7 +204,7 @@
                                 </tr> 
                                 <tr>
                                     <td class="ExtraInfo1">State:</td>
-                                    <td class="ExtraInfo2"><input id="state" name="state" type="text" class="textbox" onblur="getState(this.value)" />
+                                    <td class="ExtraInfo2"><input id="state" name="state" type="text" class="textbox" onblur="getState(this.value); getTaxRate(<?php echo $price ?>)" " />
                                         <p id="statealert" class="alert"/></p>
                                     </td>
                                 </tr>                               
