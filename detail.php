@@ -204,7 +204,7 @@
                                 </tr> 
                                 <tr>
                                     <td class="ExtraInfo1">State:</td>
-                                    <td class="ExtraInfo2"><input id="state" name="state" type="text" class="textbox" onblur="getState(this.value); getTaxRate(<?php echo $price ?>)" " />
+                                    <td class="ExtraInfo2"><input id="state" name="state" type="text" class="textbox" onblur="getState(this.value); getTaxRate(<?php echo $price ?>)" />
                                         <p id="statealert" class="alert"/></p>
                                     </td>
                                 </tr>                               

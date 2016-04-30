@@ -121,7 +121,7 @@ function check() {
 
         if (!nameCheck(document.getElementById('lastname').value)){
             document.getElementById("lastnamealert").innerHTML ="Last Name can only contain Alphabetical Characters and Spaces. (No Numbers, Symbols, etc.)"; 
-            hasProblem = true
+            hasProblem = true;
         }
         else{
             document.getElementById("lastnamealert").innerHTML ="";
@@ -138,7 +138,7 @@ function check() {
             document.getElementById("phonealert").innerHTML ="Phone Number can only contain Numbers. (No Letters, Spaces, Symbols, etc.)"; 
             hasProblem = true;
         } else if(document.getElementById('phone').value.length != 10) {
-            document.getElementById("phonealert").innerHTML = "Phone number should be 10-digit long."
+            document.getElementById("phonealert").innerHTML = "Phone number should be 10-digit long.";
             hasProblem = true;
         }else{
             document.getElementById("phonealert").innerHTML ="";
@@ -164,8 +164,9 @@ function check() {
             document.getElementById("cardnumalert").innerHTML = "";
         }   
 
+        secureCode = document.getElementById('secure').value;
         if(document.getElementById("American Express").checked===true){
-            if(document.getElementById('secure').value.length!==4){
+            if(secureCode.length!==4 || !isNumeric(secureCode)){
                 document.getElementById("securealert").innerHTML = txt4;
                 hasProblem = true;
             } 
@@ -173,7 +174,7 @@ function check() {
                 document.getElementById("securealert").innerHTML = "";
             }
         }else{      
-            if(document.getElementById('secure').value.length!==3){
+            if(secureCode.length!==3 || !isNumeric(secureCode)){
                 document.getElementById("securealert").innerHTML = txt4;
                 hasProblem = true;
             } 
@@ -189,6 +190,7 @@ function check() {
             document.getElementById("holderalert").innerHTML ="";
         }
     }
+
     return !hasProblem; 
     
 }
