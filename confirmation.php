@@ -14,9 +14,9 @@
         $sql = "INSERT INTO sales (orderNumber,productName,Name,email,phoneNumber,quantity,shipping,address,zipCode,city,state,country,cardType,cardNumber,securityCode,nameOnCard) "
                 . "VALUES (:orderNumber,:productName,:Name,:email,:phoneNumber,:quantity,:shipping,:address,:zipCode,:city,:state,:country,:cardType,:cardNumber,:securityCode,:nameOnCard)";
         $stmt = $link->prepare($sql);
-        $stmt->execute(array(':orderNumber' => $_GET['orderNumber'],':productName' => $_GET['productName'],':Name' => $_POST['lastName'].",".$_POST['firstName'],':email' => $_POST['email'],
+        $stmt->execute(array(':orderNumber' => $_GET['orderNumber'],':productName' => $_GET['productName'],':Name' => $_POST['lastName'].", ".$_POST['firstName'],':email' => $_POST['email'],
                         ':phoneNumber' => $_POST['phoneNumber'],':quantity' => $_POST['quantity'],':shipping' => $_POST['shippingMethod'],
-                        ':address' => $_POST['address1'] . $_POST['address2'],':zipCode' => $_POST['postalCode'],':city' => $_POST['city'],
+                        ':address' => $_POST['address1'] . " " . $_POST['address2'],':zipCode' => $_POST['postalCode'],':city' => $_POST['city'],
                         ':state' => $_POST['state'],':country' => $_POST['country'],':cardType' => $_POST['card'],
                         ':cardNumber' => $_POST['cardNumber'],':securityCode' => $_POST['securityCode'],':nameOnCard' => $_POST['nameOnCard']));
          
