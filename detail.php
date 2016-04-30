@@ -252,6 +252,10 @@
                                 </tr>                                
                             </table>  
                         </td>
+                        <tr>
+                            <td>Total Amount: </td>
+                            <td id = "totalAmount"></td>
+                        </tr>
                     </table>   
  
                     <div class="submit">

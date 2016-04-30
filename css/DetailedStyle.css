@@ -104,3 +104,10 @@ table{
 	text-align: center; 
 	border: black 1px; 
 }
+
+.firstCol {
+    text-align: right;
+}
+.secondCol {
+    width:3%;
+}
