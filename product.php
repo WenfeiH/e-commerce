@@ -5,9 +5,6 @@
 	require('credentials.php'); 
 	
 	try {
-		
-		$link = new PDO("mysql:host=" . $hostname . ";dbname=" . $database . ";", $username, $password); 
-		$link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
 		echo "Connected successfully<br />"; 
 		
 		

@@ -19,8 +19,6 @@
                     require('credentials.php');
                     require('misc.php');
 
-                    $link = new PDO("mysql:host=$hostname; dbname=$database;", $username, $password); 
-                    $link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
 
                     $count = 0; 
                     $sql = "SELECT * FROM products"; 
