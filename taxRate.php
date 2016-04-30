@@ -19,10 +19,10 @@
 		$state = $_REQUEST["state"]; 
 		
 		if (array_key_exists($shippingMethod, $shippingMethodArray) && array_key_exists($state, $stateTaxRateArray))
-			echo $stateTaxRateArray[$state] . " (State Tax Rate) * " . $price . " (Price) * " . $quantity . " (Quantity) * " . $shippingMethodArray[$shippingMethod] . " (Shipping Rate) = $" . number_format((float) round($price * $quantity * $shippingMethodArray[$shippingMethod], 2), 2, '.', ''); 
+			echo $stateTaxRateArray[$state] . " (State Tax Rate) * " . $price . " (Price) * " . $quantity . " (Quantity) * " . $shippingMethodArray[$shippingMethod] . " (Shipping Rate) = $" . number_format((float) round($price * $quantity * $shippingMethodArray[$shippingMethod] * $stateAbbreviationTaxRateArray[$state], 2), 2, '.', ''); 
 			
 		else if (array_key_exists($shippingMethod, $shippingMethodArray) && array_key_exists($state, $stateAbbreviationTaxRateArray))
-			echo $stateAbbreviationTaxRateArray[$state] . " (State Tax Rate) * " . $price . " (Price) * " . $quantity . " (Quantity) * " . $shippingMethodArray[$shippingMethod] . " (Shipping Rate) = $" . number_format((float) round($price * $quantity * $shippingMethodArray[$shippingMethod], 2), 2, '.', ''); 
+			echo $stateAbbreviationTaxRateArray[$state] . " (State Tax Rate) * " . $price . " (Price) * " . $quantity . " (Quantity) * " . $shippingMethodArray[$shippingMethod] . " (Shipping Rate) = $" . number_format((float) round($price * $quantity * $shippingMethodArray[$shippingMethod] * $stateAbbreviationTaxRateArray[$state], 2), 2, '.', ''); 
 		else 
 			echo "Shipping Method and Quantity Has To Be Filled for Total Cost";
 	
