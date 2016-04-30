@@ -4,6 +4,7 @@
         <title>Pokemon Fans | <?php echo $_GET['name'] ?></title>
         <link href="./css/DetailedStyle.css" rel="stylesheet" />
         <script src="./js/check.js" type="text/javascript"></script>
+        <script type="text/javascript" src="state.js"></script>
     </head>
 
     <body>
@@ -198,7 +199,7 @@
                                 </tr> 
                                 <tr>
                                     <td class="ExtraInfo1">State:</td>
-                                    <td class="ExtraInfo2"><input id="state" name="state" type="text" class="textbox" />
+                                    <td class="ExtraInfo2"><input id="state" name="state" type="text" class="textbox" onblur="getState(this.value)" />
                                         <p id="statealert" class="alert"/></p>
                                     </td>
                                 </tr>                               
