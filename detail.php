@@ -4,6 +4,7 @@
         <title>Pokemon Fans | <?php echo $_GET['name'] ?></title>
         <link href="./css/DetailedStyle.css" rel="stylesheet" />
         <script src="./js/check.js" type="text/javascript"></script>
+        <script src="./js/state.js" type="text/javascript"></script>
     </head>
 
     <body>
@@ -120,7 +121,7 @@
         </div>
 
         <div class="payment">
-            <form action="confirmation.php" onSubmit="check()" method="post">
+            <form action="confirmation.php?orderNumber=<?php echo time()?>&productName=<?php echo $_GET['name']?>" onSubmit="return check()" method="post">
                 <fieldset id="payment">
                     <legend><h4>Payment Information</h4></legend>
                     <table>
@@ -198,7 +199,7 @@
                                 </tr> 
                                 <tr>
                                     <td class="ExtraInfo1">State:</td>
-                                    <td class="ExtraInfo2"><input id="state" name="state" type="text" class="textbox" />
+                                    <td class="ExtraInfo2"><input id="state" name="state" type="text" class="textbox" onblur="getState(this.value)" />
                                         <p id="statealert" class="alert"/></p>
                                     </td>
                                 </tr>                               
