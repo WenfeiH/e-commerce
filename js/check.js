@@ -190,8 +190,7 @@ function check() {
         }
     }
     
-    return !hasProblem; 
-
+    //return !hasProblem; 
 }
 function clear_alert(){
     document.getElementById("firstnamealert").innerHTML ="";
