@@ -226,11 +226,11 @@
 									<td class="ExtraInfo1">Card Type:</td>
 									<td class="ExtraInfo2">
 										<form id="cardtype"> 
-											<input type="radio" name="card" id="Visa" checked /> 
+											<input type="radio" name="card" id="Visa" value="Visa" checked /> 
 											<label for="Visa">Visa</label><br>
-											<input type="radio" name="card" id="American Express" />
+											<input type="radio" name="card" id="American Express" value="American Express" />
 											<label for="American Express">American Express</label><br>
-											<input type="radio" name="card" id="Mastercard" />
+											<input type="radio" name="card" id="Mastercard" value="Mastercard" />
 											<label for="Mastercard">Mastercard</label><br>
 										</form>
 									</td>
