@@ -126,7 +126,7 @@
         </div>
 
         <div class="payment">
-            <form action="confirmation.php?orderNumber=<?php echo time()?>&productName=<?php echo $_GET['name']?>" onSubmit="return check()" method="post">
+            <form action="confirmation.php?productName=<?php echo $_GET['name']?>" onSubmit="return check()" method="post">
                 <fieldset id="payment">
                     <legend><h4>Payment Information</h4></legend>
                     <table>

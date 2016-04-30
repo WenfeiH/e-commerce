@@ -245,3 +245,34 @@ function validateEmail(email)
     var re = /\S+?@\S+?\.[^\s@\.]+/;
     return re.test(email);
 }
+
+
+function searchcheck(){
+    var txt1="Please fill in each field correctly.";
+    var hasProblem = false;
+
+    if (document.getElementById('orderNumber').value === "" ||
+        document.getElementById('firstname2').value === "" ||
+        document.getElementById('lastname2').value === "" ){
+        hasProblem = true;
+    }
+    else {
+        if (!nameCheck(document.getElementById('firstname2').value)){
+            hasProblem = true;
+        }
+        if (!nameCheck(document.getElementById('lastname2').value)){
+            hasProblem = true;
+        }
+        if (!isNumeric(document.getElementById('orderNumber').value)){
+            hasProblem = true;
+        }
+    }        
+    if(hasProblem === true){
+        document.getElementById("searchalert").innerHTML =txt1;
+    }
+    else{
+        document.getElementById("searchalert").innerHTML ="";
+    }
+    return !hasProblem;
+
+}

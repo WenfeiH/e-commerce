@@ -111,3 +111,19 @@ table{
 .secondCol {
     width:3%;
 }
+
+.cancel {
+    float: left;
+    margin-left: 15%;
+}
+.recheck {
+    float: left;
+    margin-left: 15%;
+    margin-top:50px;
+}
+.tablestyle{
+    width:40%;
+}
+#searchalert{
+   color:red;
+}
