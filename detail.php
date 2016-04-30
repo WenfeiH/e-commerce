@@ -5,7 +5,7 @@
         <link href="./css/DetailedStyle.css" rel="stylesheet" />
         <script src="./js/check.js" type="text/javascript"></script>
         <script src="./js/state.js" type="text/javascript"></script>
-        <script type="text/javascript" src="taxRate.js"></script>
+        <script src="./js/taxRate.js" type="text/javascript"></script>
     </head>
 
     <body>
