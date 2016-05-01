@@ -112,18 +112,23 @@ table{
     width:3%;
 }
 
-.cancel {
-    float: left;
-    margin-left: 15%;
-}
-.recheck {
-    float: left;
-    margin-left: 15%;
-    margin-top:50px;
-}
-.tablestyle{
-    width:40%;
+.search{
+    width:30%;
+    margin-left:20%;
 }
 #searchalert{
    color:red;
+}
+.recheck {
+    margin-top: 50px;
+}
+.tablestyle{
+    width:30%;
+}
+.confirm {
+    width:23%;
+    margin-left:20%;
+}
+#finalstatus{
+    color:blue;
 }
