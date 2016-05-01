@@ -38,12 +38,12 @@
                 $last=$_POST['lastname'];
                 $orderNumber=$_POST['orderNumber'];
                 
-                $sql="SELECT COUNT(*) FROM sales WHERE orderNumber = '".$_POST['orderNumber']."' AND Name='".$_POST['lastname'].", ".$_POST['firstname']."'";
-                if ($rows = $link->query($sql)) {
-                    if($rows->fetchColumn() > 0) {
-                        $sql="SELECT * FROM sales WHERE orderNumber = '".$_POST['orderNumber']."' AND Name='".$_POST['lastname'].", ".$_POST['firstname']."'";
-                        echo "<script type=text/javascript>document.getElementById('searchalert').innerHTML =''</script>"; 
-                        foreach($link->query($sql) as $rows){  
+                $sql="SELECT * FROM sales WHERE orderNumber = '".$_POST['orderNumber']."' AND Name='".$_POST['lastname'].", ".$_POST['firstname']."'";
+                $stmt = $link->prepare($sql);
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+                    echo "<script type=text/javascript>document.getElementById('searchalert').innerHTML =''</script>"; 
+                    while($rows=$stmt->FETCH(PDO::FETCH_ASSOC)){
             ?>
             
             <form class="confirm" action="cancelOrder.php" method="post">       
@@ -110,7 +110,7 @@
                     echo "<script type=text/javascript>document.getElementById('searchalert').innerHTML ='Order does not exist, please check the information.'</script>";  
                 }
             }
-        }
+
         ?>  
         
         <?php
