@@ -1,34 +1,34 @@
 <?php 
 	
 	function hasBadData() {
-		if(preg_match("^[A-Za-z ]+$", $_POST['firstName']) === 0)
+		if(preg_match("^[A-Za-z ]+$^", $_POST['firstName']) === 0)
 			return TRUE;
 
-		if(preg_match("^[A-Za-z ]+$", $_POST['lastName']) === 0)
+		if(preg_match("^[A-Za-z ]+$^", $_POST['lastName']) === 0)
 			return TRUE;
 
 		if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
 			return TRUE;
 
-		if(preg_match("^[[:digit:]]+$", $_POST['phoneNumber']) === 0)
+		if(preg_match("^[[:digit:]]+$^", $_POST['phoneNumber']) === 0)
 			return TRUE;
 		if (strlen($_POST['phoneNumber']) != 10)
 			return TRUE;
 		
-		if(preg_match("^[[:digit:]]+$", $_POST['quantity']) === 0)
+		if(preg_match("^[[:digit:]]+$^", $_POST['quantity']) === 0)
 			return TRUE;
 
-		if(preg_match("^[[:digit:]]+$", $_POST['postalCode']) === 0)
+		if(preg_match("^[[:digit:]]+$^", $_POST['postalCode']) === 0)
 			return TRUE;
 		if (strlen($_POST['postalCode']) != 5)
 			return TRUE;
 
-		if(preg_match("^[[:digit:]]+$", $_POST['cardNumber']) === 0)
+		if(preg_match("^[[:digit:]]+$^", $_POST['cardNumber']) === 0)
 			return TRUE;
 		if (strlen($_POST['cardNumber']) != 16)
 			return TRUE;
 
-		if(preg_match("^[[:digit:]]+$", $_POST['securityCode']) === 0)
+		if(preg_match("^[[:digit:]]+$^", $_POST['securityCode']) === 0)
 			return TRUE;
 		if($_POST['card'] === "American Express") {
 			if(strlen($_POST['securityCode']) != 4)
@@ -38,7 +38,7 @@
 				return TRUE;
 		}
 
-		if(preg_match("^[A-Za-z ]+$", $_POST['nameOnCard']) === 0)
+		if(preg_match("^[A-Za-z ]+$^", $_POST['nameOnCard']) === 0)
 			return TRUE;
 
 		return FALSE;
