@@ -21,9 +21,6 @@
                         ':state' => $_POST['state'],':country' => $_POST['country'],':cardType' => $_POST['card'],
                         ':cardNumber' => $_POST['cardNumber'],':securityCode' => $_POST['securityCode'],':nameOnCard' => $_POST['nameOnCard']));
          
-        $sql="SELECT * FROM sales WHERE orderNumber = '".$orderNumber."' AND Name='".$_POST['lastName'].", ".$_POST['firstName']."'";
-        
-        foreach($link->query($sql) as $rows){
         ?>
         <div id="confirmation">
             <br>
@@ -33,87 +30,86 @@
                 <tr>
                     <td class="firstCol">Order number:</td>
                     <td class="secondCol"></td>
-                    <td><?php echo $rows['orderNumber'] ?></td>
+                    <td><?php echo $orderNumber ?></td>
                 </tr>  
                 <tr>
                     <td class="firstCol">Product: </td>
                     <td class="secondCol"></td>
-                    <td><?php echo $rows['productName'] ?></td>
+                    <td><?php echo $_GET['productName'] ?></td>
                 </tr>          
                 <tr>
                     <td class="firstCol">Quantity: </td>
                     <td class="secondCol"></td>
-                    <td><?php echo $rows['quantity'] ?></td>
+                    <td><?php echo $_POST['quantity'] ?></td>
                 </tr>
                 <tr>
                     <td class="firstCol">Name: </td>
                     <td class="secondCol"></td>
-                    <td><?php echo $rows['Name']?></td>
+                    <td><?php echo $_POST['lastName'].", ".$_POST['firstName'] ?></td>
                 </tr>
                 <tr>
                     <td class="firstCol">Email: </td>
                     <td class="secondCol"></td>
-                    <td><?php echo $rows['email'] ?></td>
+                    <td><?php echo $_POST['email'] ?></td>
                 </tr>
                 <tr>
                     <td class="firstCol">Phone Number: </td>
                     <td class="secondCol"></td>
-                    <td><?php echo $rows['phoneNumber'] ?></td>
+                    <td><?php echo $_POST['phoneNumber'] ?></td>
                 </tr>
                 <tr>
                     <td class="firstCol">Shipping Method: </td>
                     <td class="secondCol"></td>
-                    <td><?php echo $rows['shipping'] ?></td>
+                    <td><?php echo $_POST['shippingMethod'] ?></td>
                 </tr>
                 <tr>
                     <td class="firstCol">Address: </td>
                     <td class="secondCol"></td>
-                    <td><?php echo $rows['address'] ?></td>
+                    <td><?php echo $_POST['address1']." ". $_POST['address2'] ?></td>
                 </tr>
                 <tr>
                     <td class="firstCol">Postal Code: </td>
                     <td class="secondCol"></td>
-                    <td><?php echo $rows['zipCode'] ?></td>
+                    <td><?php echo $_POST['postalCode'] ?></td>
                 </tr>
                 <tr>
                     <td class="firstCol">City: </td>
                     <td class="secondCol"></td>
-                    <td><?php echo $rows['city'] ?></td>
+                    <td><?php echo $_POST['city'] ?></td>
                 </tr>
                 <tr>
                     <td class="firstCol">State: </td>
                     <td class="secondCol"></td>
-                    <td><?php echo $rows['state'] ?></td>
+                    <td><?php echo $_POST['state'] ?></td>
                 </tr>
                 <tr>
                     <td class="firstCol">Country: </td>
                     <td class="secondCol"></td>
-                    <td><?php echo $rows['country'] ?></td>
+                    <td><?php echo $_POST['country'] ?></td>
                 </tr>
                 <tr>
                     <td class="firstCol">Card Type: </td>
                     <td class="secondCol"></td>
-                    <td><?php echo $rows['cardType'] ?></td>
+                    <td><?php echo $_POST['card'] ?></td>
                 </tr>
                 <tr>
                     <td class="firstCol">Card Number: </td>
                     <td class="secondCol"></td>
-                    <td><?php echo $rows['cardNumber'] ?></td>
+                    <td><?php echo $_POST['cardNumber'] ?></td>
                 </tr>
                 <tr>
                     <td class="firstCol">Security Code: </td>
                     <td class="secondCol"></td>
-                    <td><?php echo $rows['securityCode'] ?></td>
+                    <td><?php echo $_POST['securityCode'] ?></td>
                 </tr>
                 <tr>
                     <td class="firstCol">Name on Card: </td>
                     <td class="secondCol"></td>
-                    <td><?php echo $rows['nameOnCard'] ?></td>
+                    <td><?php echo $_POST['nameOnCard'] ?></td>
                 </tr>  
             </table>
         </div>
         <?php            
-        }      
         include "footer.html"
         ?>
     </body>
