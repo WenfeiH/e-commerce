@@ -14,17 +14,13 @@
         $sql = "INSERT INTO sales (productName,Name,email,phoneNumber,quantity,shipping,address,zipCode,city,state,country,cardType,cardNumber,securityCode,nameOnCard) "
                 . "VALUES (:productName,:Name,:email,:phoneNumber,:quantity,:shipping,:address,:zipCode,:city,:state,:country,:cardType,:cardNumber,:securityCode,:nameOnCard)";
         $stmt = $link->prepare($sql);
-<<<<<<< HEAD
-        $stmt->execute(array(':productName' => $_GET['productName'],':Name' => $_POST['lastName'].",".$_POST['firstName'],':email' => $_POST['email'],
-=======
-        $stmt->execute(array(':orderNumber' => $_GET['orderNumber'],':productName' => $_GET['productName'],':Name' => $_POST['lastName'].", ".$_POST['firstName'],':email' => $_POST['email'],
->>>>>>> 81cf0cae70b7210d8e28bfef1d51649c8c9598bc
+        $stmt->execute(array(':productName' => $_GET['productName'],':Name' => $_POST['lastName'].", ".$_POST['firstName'],':email' => $_POST['email'],
                         ':phoneNumber' => $_POST['phoneNumber'],':quantity' => $_POST['quantity'],':shipping' => $_POST['shippingMethod'],
-                        ':address' => $_POST['address1'] . " " . $_POST['address2'],':zipCode' => $_POST['postalCode'],':city' => $_POST['city'],
+                        ':address' => $_POST['address1']." ". $_POST['address2'],':zipCode' => $_POST['postalCode'],':city' => $_POST['city'],
                         ':state' => $_POST['state'],':country' => $_POST['country'],':cardType' => $_POST['card'],
                         ':cardNumber' => $_POST['cardNumber'],':securityCode' => $_POST['securityCode'],':nameOnCard' => $_POST['nameOnCard']));
          
-        $sql="SELECT * FROM sales WHERE productName = '".$_GET['productName']."' AND Name='".$_POST['lastName'].",".$_POST['firstName']."'";
+        $sql="SELECT * FROM sales WHERE productName = '".$_GET['productName']."' AND Name='".$_POST['lastName'].", ".$_POST['firstName']."'";
         
         foreach($link->query($sql) as $rows){
         ?>
