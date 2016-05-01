@@ -18,7 +18,7 @@ function getTaxRate(price)
 		
 	}
 	
-	xhr.open ("GET", "./ajax/taxRate.php?shippingMethod=" + shippingMethod + "&quantity=" + quantity + "&price=" + price + "&state=" + state, true);
+	xhr.open ("GET", "taxRate.php?shippingMethod=" + shippingMethod + "&quantity=" + quantity + "&price=" + price + "&state=" + state, true);
 	xhr.send ();  
 	
 }

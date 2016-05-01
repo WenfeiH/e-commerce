@@ -252,12 +252,14 @@
                                 </tr>                                
                             </table>  
                         </td>
-                        <tr>
+                    </table>   
+                    <div>
+                        <table>
                             <td>Total Amount: </td>
                             <td id = "totalAmount"></td>
-                        </tr>
-                    </table>   
- 
+                        </table>
+                    </div>
+                        
                     <div class="submit">
                         <input type="submit" name="submit" value="Submit your Order"/>
                     </div>  

@@ -14,7 +14,7 @@ function getState(state)
 		
 	}
 	
-	xhr.open ("GET", "./ajax/getState.php?state=" + state, true);
+	xhr.open ("GET", "getState.php?state=" + state, true);
 	xhr.send ();  
 	
 }
