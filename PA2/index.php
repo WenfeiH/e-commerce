@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pokemon Fans | Overview</title>
+        <link href="./css/index.css" rel="stylesheet" />
+    </head>
+
+    <body>
+
+        <?php include "header.html"?>           
+
+        <div class="aboutus">
+            <h2>Our Company</h2>
+            <p>We provide Pokemon Games for our valued customers as merchandise. The critically acclaimed Pokemon games have become an iconic and cultural phenomena that has implanted itself into the hearts and minds of an entire generation of children. We pride ourselves in the fact that we provide that opportunity for people who grew up with these games to embrace nostalgia and play these video games for an incredibly cheap price. We hope you enjoy your playthroughs of these various games and we hope to see you return to this website and purchase more from our selection in the future.     
+            <br></br>
+            <h2>About Us</h2>
+            <p>Management Team: 
+                <br><b>Colin Son, Jiahao Chen, Jiacheng Zhang, Wenfei Han</b>
+            </p>
+            <p>
+                <br>We are students at the University of California, Irvine. We hope that you enjoy what we have to offer on our website. Our customer service team is excellent and will see to your every need. Thank you for visiting our website and purchasing our merchandise.<br>
+            </p>
+        </div>
+        
+        <div class="button">
+            <p><a href="main.php">More</a></p>
+        </div>
+        
+        <br>
+        <div align="center">        
+            <h4>Payment Options</h4>
+            <p>Visa<br>
+               MasterCard<br>
+               American Express
+            </p>
+        </div>
+        
+        <?php include "footer.html"?>
+
+    </body>
+</html>
