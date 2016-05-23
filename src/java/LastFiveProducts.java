@@ -40,10 +40,12 @@ public class LastFiveProducts extends HttpServlet {
         
         
         out.println("<br />"); 
-        out.println("\t\t<h1 align=\"center\">Last Five Products Visited</h3>"); 
-        out.println("\t\t\t<div class=\"list\">"); 
-        out.println("\t\t\t<table>"); 
-        out.println("\t\t\t\t<tr>");
+        
+        out.println("\t\t<div class=\"Suggestion\">");
+        out.println("\t\t\t<fieldset>");
+        out.println("\t\t\t\t<legend><h4>Last Viewed</h4></legend>");
+        out.println("\t\t\t\t\t<table>"); 
+        out.println("\t\t\t\t\t\t<tbody><tr>");
         
         Connection con = null; 
         Statement statement = null; 
@@ -73,12 +75,12 @@ public class LastFiveProducts extends HttpServlet {
                 result.next(); 
                 
                 dir = parseName(result.getString("name")); 
-                ref = ""; 
+                ref = ""; //TODO
                 imageSource = "Images/" + dir + "/" + dir; 
                 
-                out.println("\t\t\t\t\t<td>"); 
-                out.println("\t\t\t\t\t\t<div class=\"pic_cell\">"); 
-                out.println("\t\t\t\t\t\t\t<a href=\"" + ref + "\"><img alt=" + name + " Image Is Not Available\" src=\"" + imageSource + ".jpg\"></a>"); 
+                out.println("\t\t\t\t\t<td class=\"columns2\">"); 
+                out.println("\t\t\t\t\t\t<div>"); 
+                out.println("\t\t\t\t\t\t\t<a href=\"" + ref + "\"><img class=\"thumbnail2\" src=\"" + imageSource + ".jpg\"></a>"); 
                 out.println("\t\t\t\t\t\t\t<div class=\"container\">"); 
                 out.println("\t\t\t\t\t\t\t\t<p class=\"name\">" + result.getString("name") + "</p>");
                 out.println("\t\t\t\t\t\t\t\t<p class=\"rd\">Release Date: " + result.getInt("releaseDate") + "</p>");
@@ -91,12 +93,14 @@ public class LastFiveProducts extends HttpServlet {
 
             }
             
-            out.println("\t\t\t\t</tr>"); 
+            out.println("\t\t\t\t</tr></tbody>"); 
             out.println("\t\t\t</table>"); 
+            out.println("\t\t\t</fieldset>");
             out.println("\t\t</div>");
             
             statement.close(); 
             con.close(); 
+            out.close();
         }
         
         catch (SQLException e){
@@ -126,7 +130,7 @@ public class LastFiveProducts extends HttpServlet {
             try { result.close(); } catch (Exception e) {}
             try { statement.close(); } catch (Exception e) {}
             try { con.close(); } catch (Exception e) {}
-            
+            try { out.close(); } catch (Exception e) {}
         }
         
     }

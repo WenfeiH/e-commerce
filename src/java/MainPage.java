@@ -36,12 +36,12 @@ public class MainPage extends HttpServlet {
             out.println("\t\t<title>Pokemon Fans | Products</title>"); 
             out.println("\t\t<link href=\"css/list.css\" rel=\"stylesheet\" />"); 
             out.println("\t\t<link href=\"css/common.css\" rel=\"stylesheet\" />"); 
+            out.println("\t\t<link href=\"css/DetailedStyle.css\" rel=\"stylesheet\">");
             out.println("\t</head>"); 
             out.println("\t<body>"); 
             
             request.getRequestDispatcher("/html/header.html").include(request, response);
             
-            out.println("<h1 align=\"center\">Main Product List</h1>"); 
             out.println("\t\t<div class=\"list\">"); 
             out.println("\t\t\t<table>"); 
             out.println("\t\t\t\t<tr>"); 
