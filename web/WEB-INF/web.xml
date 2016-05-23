@@ -4,9 +4,17 @@
         <servlet-name>CustomerViewProduct</servlet-name>
         <servlet-class>CustomerViewProduct</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DecrementCustomerViewProduct</servlet-name>
+        <servlet-class>DecrementCustomerViewProduct</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CustomerViewProduct</servlet-name>
         <url-pattern>/CustomerViewProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DecrementCustomerViewProduct</servlet-name>
+        <url-pattern>/DecrementCustomerViewProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
