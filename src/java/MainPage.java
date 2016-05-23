@@ -45,8 +45,6 @@ public class MainPage extends HttpServlet {
             out.println("\t\t\t<li class=\"nav-item\"><a href=\"" + request.getContextPath() + "/MainPage\">Products</a></li>"); 
             out.println("\t\t</ul>"); 
             out.println("\t</div>"); 
-
-            request.getRequestDispatcher("/LastFiveProducts").include(request, response);
             
             out.println("<h1 align=\"center\">Main Product List</h1>"); 
             out.println("\t\t<div class=\"list\">"); 
@@ -92,6 +90,9 @@ public class MainPage extends HttpServlet {
             out.println("\t\t\t\t</tr>"); 
             out.println("\t\t\t</table>"); 
             out.println("\t\t</div>"); 
+            
+            request.getRequestDispatcher("/LastFiveProducts").include(request, response);
+            
             out.println("\t\t<div class=\"footer\">"); 
             out.println("\t\t\t<p>University of California, Irvine, CA 92676</p>"); 
             out.println("\t\t\t<p>&copy; 2016 Pokemon Fans.  All rights reserved.</p>"); 

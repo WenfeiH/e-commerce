@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList; 
+import java.util.Deque;
+import java.util.concurrent.ConcurrentLinkedDeque; 
 import java.sql.*; 
 
 @WebServlet(urlPatterns = {"/LastFiveProducts"})
@@ -30,12 +31,13 @@ public class LastFiveProducts extends HttpServlet {
         PrintWriter out = response.getWriter(); 
         HttpSession session = request.getSession();
         
-        ArrayList<String> lastFiveProducts; 
+        Deque<String> lastFiveProducts; 
         
         if (session.getAttribute("LastFiveProducts") == null)
-            lastFiveProducts = new ArrayList<String>(); 
+            lastFiveProducts = new ConcurrentLinkedDeque<>(); 
         else
-            lastFiveProducts = (ArrayList<String>) session.getAttribute("LastFiveProducts"); 
+            lastFiveProducts = (Deque<String>) session.getAttribute("LastFiveProducts"); 
+        
         
         out.println("<br />"); 
         out.println("\t\t<h1 align=\"center\">Last Five Products Visited</h3>"); 
@@ -47,11 +49,11 @@ public class LastFiveProducts extends HttpServlet {
         Statement statement = null; 
         ResultSet result = null; 
         
-//        lastFiveProducts.add("Pokemon Blue"); 
-//        lastFiveProducts.add("Pokemon Black"); 
-//        lastFiveProducts.add("Pokemon Crystal"); 
-//        lastFiveProducts.add("Pokemon Ruby"); 
-//        lastFiveProducts.add("Pokemon Y"); 
+//        lastFiveProducts.offerFirst("Pokemon Blue"); 
+//        lastFiveProducts.offerFirst("Pokemon Black"); 
+//        lastFiveProducts.offerFirst("Pokemon Crystal"); 
+//        lastFiveProducts.offerFirst("Pokemon Ruby"); 
+//        lastFiveProducts.offerFirst("Pokemon Y"); 
         
         try {
 
@@ -64,9 +66,9 @@ public class LastFiveProducts extends HttpServlet {
             String ref; 
             String imageSource; 
             
-            for (int i = 0; i < lastFiveProducts.size(); i++){
+            for (String name : lastFiveProducts){
                 
-                productQuery = "SELECT * FROM products WHERE name = \"" + lastFiveProducts.get(i) + "\"; "; 
+                productQuery = "SELECT * FROM products WHERE name = \"" + name + "\"; "; 
                 result = statement.executeQuery(productQuery); 
                 result.next(); 
                 
@@ -76,7 +78,7 @@ public class LastFiveProducts extends HttpServlet {
                 
                 out.println("\t\t\t\t\t<td>"); 
                 out.println("\t\t\t\t\t\t<div class=\"pic_cell\">"); 
-                out.println("\t\t\t\t\t\t\t<a href=\"" + ref + "\"><img alt=" + lastFiveProducts.get(i) + " Image Is Not Available\" src=\"" + imageSource + ".jpg\"></a>"); 
+                out.println("\t\t\t\t\t\t\t<a href=\"" + ref + "\"><img alt=" + name + " Image Is Not Available\" src=\"" + imageSource + ".jpg\"></a>"); 
                 out.println("\t\t\t\t\t\t\t<div class=\"container\">"); 
                 out.println("\t\t\t\t\t\t\t\t<p class=\"name\">" + result.getString("name") + "</p>");
                 out.println("\t\t\t\t\t\t\t\t<p class=\"rd\">Release Date: " + result.getInt("releaseDate") + "</p>");
@@ -95,7 +97,6 @@ public class LastFiveProducts extends HttpServlet {
             
             statement.close(); 
             con.close(); 
-            
         }
         
         catch (SQLException e){
