@@ -29,7 +29,7 @@ public class LastFiveProducts extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter(); 
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(true);
         
         Deque<String> lastFiveProducts; 
         
