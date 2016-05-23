@@ -38,13 +38,15 @@ public class MainPage extends HttpServlet {
             out.println("\t\t<link href=\"css/common.css\" rel=\"stylesheet\" />"); 
             out.println("\t</head>"); 
             out.println("\t<body>"); 
-            out.println("\t\t<div class=\"header\">"); 
-            out.println("\t\t\t<a href=\"" + request.getContextPath() + "/index.html\" class=\"logo\">POKEMON FANS</a>"); 
-            out.println("\t\t\t<ul class=\"nav\">");
-            out.println("\t\t\t<li class=\"nav-item\"><a href=\"" + request.getContextPath() + "/index.html\">Home</a></li>"); 
-            out.println("\t\t\t<li class=\"nav-item\"><a href=\"" + request.getContextPath() + "/MainPage\">Products</a></li>"); 
-            out.println("\t\t</ul>"); 
-            out.println("\t</div>"); 
+//            out.println("\t\t<div class=\"header\">"); 
+//            out.println("\t\t\t<a href=\"" + request.getContextPath() + "/index.html\" class=\"logo\">POKEMON FANS</a>"); 
+//            out.println("\t\t\t<ul class=\"nav\">");
+//            out.println("\t\t\t<li class=\"nav-item\"><a href=\"" + request.getContextPath() + "/index.html\">Home</a></li>"); 
+//            out.println("\t\t\t<li class=\"nav-item\"><a href=\"" + request.getContextPath() + "/MainPage\">Products</a></li>"); 
+//            out.println("\t\t</ul>"); 
+//            out.println("\t</div>"); 
+            
+            request.getRequestDispatcher("/html/header.html").include(request, response);
             
             out.println("<h1 align=\"center\">Main Product List</h1>"); 
             out.println("\t\t<div class=\"list\">"); 
@@ -92,11 +94,11 @@ public class MainPage extends HttpServlet {
             out.println("\t\t</div>"); 
             
             request.getRequestDispatcher("/LastFiveProducts").include(request, response);
-            
-            out.println("\t\t<div class=\"footer\">"); 
-            out.println("\t\t\t<p>University of California, Irvine, CA 92676</p>"); 
-            out.println("\t\t\t<p>&copy; 2016 Pokemon Fans.  All rights reserved.</p>"); 
-            out.println("\t\t</div> "); 
+            request.getRequestDispatcher("/html/footer.html").include(request, response);
+//            out.println("\t\t<div class=\"footer\">"); 
+//            out.println("\t\t\t<p>University of California, Irvine, CA 92676</p>"); 
+//            out.println("\t\t\t<p>&copy; 2016 Pokemon Fans.  All rights reserved.</p>"); 
+//            out.println("\t\t</div> "); 
             out.println("\t</body>"); 
             
             out.close(); 

@@ -3,11 +3,13 @@
     <head>
         <title>Pokemon Fans | Overview</title>
         <link href="./css/index.css" rel="stylesheet" />
+        <!--Required for including header and footer-->
+        <script src="http://www.w3schools.com/lib/w3data.js"></script>
     </head>
 
     <body>
-
-        <?php include "header.html"?>           
+        <!--Required for including header and footer-->
+        <div w3-include-html="/Project3/html/header.html"></div>         
 
         <div class="aboutus">
             <h2>Our Company</h2>
@@ -35,7 +37,11 @@
             </p>
         </div>
         
-        <?php include "footer.html"?>
-
+        <!--Required for including header and footer-->
+        <div w3-include-html="/Project3/html/footer.html"></div>
+        <!--Required for including header and footer-->
+        <script>
+        w3IncludeHTML();
+        </script>
     </body>
 </html>
