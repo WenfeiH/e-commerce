@@ -51,11 +51,11 @@ public class LastFiveProducts extends HttpServlet {
         Statement statement = null; 
         ResultSet result = null; 
         
-//        lastFiveProducts.offerFirst("Pokemon Blue"); 
-//        lastFiveProducts.offerFirst("Pokemon Black"); 
-//        lastFiveProducts.offerFirst("Pokemon Crystal"); 
-//        lastFiveProducts.offerFirst("Pokemon Ruby"); 
-//        lastFiveProducts.offerFirst("Pokemon Y"); 
+        lastFiveProducts.offerFirst("Pokemon Blue"); 
+        lastFiveProducts.offerFirst("Pokemon Black"); 
+        lastFiveProducts.offerFirst("Pokemon Crystal"); 
+        lastFiveProducts.offerFirst("Pokemon Ruby"); 
+        lastFiveProducts.offerFirst("Pokemon Y"); 
         
         try {
 
@@ -63,10 +63,11 @@ public class LastFiveProducts extends HttpServlet {
             con = DriverManager.getConnection(DatabaseLoginInformation.LOGINURL, DatabaseLoginInformation.USERNAME, DatabaseLoginInformation.USERPASSWORD);
             statement = con.createStatement(); 
             
-            String productQuery; 
+            String productQuery;
+            String productName;
             String dir; 
             String ref; 
-            String imageSource; 
+            String imageSource;
             
             for (String name : lastFiveProducts){
                 
@@ -74,15 +75,16 @@ public class LastFiveProducts extends HttpServlet {
                 result = statement.executeQuery(productQuery); 
                 result.next(); 
                 
-                dir = parseName(result.getString("name")); 
-                ref = ""; //TODO
+                productName = result.getString("name");
+                dir = parseName(productName); 
+                ref = "/Project3/DetailPage?name=" + productName;
                 imageSource = "Images/" + dir + "/" + dir; 
                 
                 out.println("\t\t\t\t\t<td class=\"columns2\">"); 
                 out.println("\t\t\t\t\t\t<div>"); 
                 out.println("\t\t\t\t\t\t\t<a href=\"" + ref + "\"><img class=\"thumbnail2\" src=\"" + imageSource + ".jpg\"></a>"); 
                 out.println("\t\t\t\t\t\t\t<div class=\"container\">"); 
-                out.println("\t\t\t\t\t\t\t\t<p class=\"name\">" + result.getString("name") + "</p>");
+                out.println("\t\t\t\t\t\t\t\t<p class=\"name\">" + productName + "</p>");
                 out.println("\t\t\t\t\t\t\t\t<p class=\"rd\">Release Date: " + result.getInt("releaseDate") + "</p>");
                 out.println("\t\t\t\t\t\t\t\t<p class=\"gen\">Generation: " + result.getInt("generation") + "</p>"); 
                 out.println("\t\t\t\t\t\t\t</div>"); 

@@ -62,16 +62,16 @@ public class MainPage extends HttpServlet {
                     out.println("<tr>"); 
                     
                 }
-                
-                String dir = parseName(result.getString("name")); 
-                String ref = ""; 
+                String productName = result.getString("name");
+                String dir = parseName(productName); 
+                String ref = "/Project3/DetailPage?name=" + productName; 
                 String imageSource = "Images/" + dir + "/" + dir; 
                 
                 out.println("\t\t\t\t\t<td>"); 
                 out.println("\t\t\t\t\t\t<div class=\"pic_cell\">"); 
-                out.println("\t\t\t\t\t\t\t<a href=\"" + ref + "\"><img alt=\"" + result.getString("name") + " Image Is Not Available\" src=\"" + imageSource + ".jpg\"></a>"); 
+                out.println("\t\t\t\t\t\t\t<a href=\"" + ref + "\"><img alt=\"" + productName + " Image Is Not Available\" src=\"" + imageSource + ".jpg\"></a>"); 
                 out.println("\t\t\t\t\t\t\t<div class=\"container\">"); 
-                out.println("\t\t\t\t\t\t\t\t<p class=\"name\">" + result.getString("name") + "</p>"); 
+                out.println("\t\t\t\t\t\t\t\t<p class=\"name\">" + productName + "</p>"); 
                 out.println("\t\t\t\t\t\t\t\t<p class=\"rd\">Release Date: " + result.getInt("releaseDate") + "</p>"); 
                 out.println("\t\t\t\t\t\t\t\t<p class=\"gen\">Generation: " + result.getInt("generation") + "</p>"); 
                 out.println("\t\t\t\t\t\t\t</div>"); 
