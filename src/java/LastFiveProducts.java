@@ -13,16 +13,6 @@ import java.sql.*;
 
 @WebServlet(urlPatterns = {"/LastFiveProducts"})
 public class LastFiveProducts extends HttpServlet {
-    
-    private String parseName(String name){
-
-        String[] nameParsed = name.split(" "); 
-        if (nameParsed.length == 2)
-            return nameParsed[0] + "_" + nameParsed[1]; 
-        else
-            return nameParsed[0] + "_" + nameParsed[1] + "_" + nameParsed[2]; 
-
-    }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -76,7 +66,7 @@ public class LastFiveProducts extends HttpServlet {
                 result.next(); 
                 
                 productName = result.getString("name");
-                dir = parseName(productName); 
+                dir = Utils.parseName(productName); 
                 ref = "/Project3/DetailPage?name=" + productName;
                 imageSource = "Images/" + dir + "/" + dir; 
                 
