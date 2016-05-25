@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.*; 
+import java.util.Deque;
+import java.util.concurrent.ConcurrentLinkedDeque;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,7 +35,7 @@ public class DetailPage extends HttpServlet {
         Connection con = null; 
         Statement statement = null; 
         ResultSet result = null; 
-
+        
         try {
             out = response.getWriter();
             if(productName == null) {
@@ -107,10 +110,33 @@ public class DetailPage extends HttpServlet {
             printErrorPage(out, e);
         } catch(Exception e) {
             printErrorPage(out, e);
+        } finally {
+            if (out != null)
+		out.close(); 		
+            try { result.close(); } catch (Exception e) {}
+            try { statement.close(); } catch (Exception e) {}
+            try { con.close(); } catch (Exception e) {}
+        }
+        
+        HttpSession session = request.getSession(true);
+        Deque<String> q;
+        synchronized(session) {
+            if(session.getAttribute("LastFiveProducts") == null) {
+                q = new ConcurrentLinkedDeque<>();
+                q.offerFirst(productName);
+                session.setAttribute("LastFiveProducts", q);
+            } else {
+                q = (Deque<String>) session.getAttribute("LastFiveProducts");
+                if(q.contains(productName))
+                    q.remove(productName);
+                else
+                    while(q.size() >= 5)
+                        q.pollLast();
+                q.offerFirst(productName);
+            }
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -147,7 +173,7 @@ public class DetailPage extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
     private void printErrorPage(PrintWriter out, Exception e) {
         out.println("<HTML>" +

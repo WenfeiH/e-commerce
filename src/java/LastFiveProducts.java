@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Deque;
-import java.util.concurrent.ConcurrentLinkedDeque; 
 import java.sql.*; 
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 @WebServlet(urlPatterns = {"/LastFiveProducts"})
 public class LastFiveProducts extends HttpServlet {
@@ -20,14 +20,6 @@ public class LastFiveProducts extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter(); 
         HttpSession session = request.getSession(true);
-        
-        Deque<String> lastFiveProducts; 
-        
-        if (session.getAttribute("LastFiveProducts") == null)
-            lastFiveProducts = new ConcurrentLinkedDeque<>(); 
-        else
-            lastFiveProducts = (Deque<String>) session.getAttribute("LastFiveProducts"); 
-        
         
         out.println("<br />"); 
         
@@ -41,11 +33,11 @@ public class LastFiveProducts extends HttpServlet {
         Statement statement = null; 
         ResultSet result = null; 
         
-        lastFiveProducts.offerFirst("Pokemon Blue"); 
-        lastFiveProducts.offerFirst("Pokemon Black"); 
-        lastFiveProducts.offerFirst("Pokemon Crystal"); 
-        lastFiveProducts.offerFirst("Pokemon Ruby"); 
-        lastFiveProducts.offerFirst("Pokemon Y"); 
+//        lastFiveProducts.offerFirst("Pokemon Blue"); 
+//        lastFiveProducts.offerFirst("Pokemon Black"); 
+//        lastFiveProducts.offerFirst("Pokemon Crystal"); 
+//        lastFiveProducts.offerFirst("Pokemon Ruby"); 
+//        lastFiveProducts.offerFirst("Pokemon Y"); 
         
         try {
 
@@ -59,6 +51,12 @@ public class LastFiveProducts extends HttpServlet {
             String ref; 
             String imageSource;
             
+            Deque<String> lastFiveProducts;
+            
+            if (session.getAttribute("LastFiveProducts") == null)
+                lastFiveProducts = new ConcurrentLinkedDeque<>(); 
+            else
+                lastFiveProducts = (Deque<String>) session.getAttribute("LastFiveProducts"); 
             for (String name : lastFiveProducts){
                 
                 productQuery = "SELECT * FROM products WHERE name = \"" + name + "\"; "; 
@@ -72,7 +70,7 @@ public class LastFiveProducts extends HttpServlet {
                 
                 out.println("\t\t\t\t\t<td class=\"columns2\">"); 
                 out.println("\t\t\t\t\t\t<div>"); 
-                out.println("\t\t\t\t\t\t\t<a href=\"" + ref + "\"><img class=\"thumbnail2\" src=\"" + imageSource + ".jpg\"></a>"); 
+                out.println("\t\t\t\t\t\t\t<a href=\"" + ref + "\"><img class=\"thumbnail2\" src=\"" + imageSource + ".jpg\"></a>"); //TODO: change style
                 out.println("\t\t\t\t\t\t\t<div class=\"container\">"); 
                 out.println("\t\t\t\t\t\t\t\t<p class=\"name\">" + productName + "</p>");
                 out.println("\t\t\t\t\t\t\t\t<p class=\"rd\">Release Date: " + result.getInt("releaseDate") + "</p>");
