@@ -49,6 +49,7 @@ public class DetailPage extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Pokemon Fans | " + productName + "</title>");
+            out.println("<script src=\"./js/cart.js\" type=\"text/javascript\"></script>");
             out.println("<link href=\"./css/DetailedStyle.css\" rel=\"stylesheet\" />");
             out.println("</head>");
             out.println("<body>");
@@ -100,7 +101,8 @@ public class DetailPage extends HttpServlet {
             out.println("<tr><td class=\"ExtraInfo1\">Twin Pair:</td>");
             out.println("<td class=\"ExtraInfo2\">" + result.getString("twinPair") + "</td></tr>");
             out.println("</table>");
-            out.println("<div><br><button onclick=\"alert('Added to cart!')\">Add to cart</a></br></div>"); // TODO: Style it.
+            out.println("<div><input id=\"quantity\" type=\"number\" value=\"1\" min=\"1\" size=2/>"); // TODO: Style it.
+            out.println("<br><button onclick=\"addToCart('" + productName + "');\">Add to cart</button></br></div>"); // TODO: Style it.
             out.println("</td></table></div>");
             
             
