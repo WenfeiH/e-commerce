@@ -78,31 +78,36 @@ public class Cart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/plain;charset=UTF-8");
+        PrintWriter out = response.getWriter();
         
         String productName = request.getParameter("name");
-        int quantity = Integer.valueOf(request.getParameter("quantity"));
+        String num = request.getParameter("quantity");
+        int quantity = 0;
+        if(num != null)
+            quantity = Integer.valueOf(num);
         
         int cartSize = 0;
         HttpSession session = request.getSession(true);
-        Map<String, Integer> shoppingCart;
-        synchronized(session) {
-            if(session.getAttribute("ShoppingCart") == null) {
+        Map<String, Integer> shoppingCart = (Map<String, Integer>) session.getAttribute("ShoppingCart");
+        
+        if(shoppingCart == null && productName != null) {
+            synchronized(session) {
                 shoppingCart = new HashMap<>();
                 shoppingCart.put(productName, quantity);
                 session.setAttribute("ShoppingCart", shoppingCart);
-            } else {
-                shoppingCart = (Map<String, Integer>) session.getAttribute("ShoppingCart");
+            }
+        } else if(productName != null){
+            synchronized(shoppingCart) {
                 if(shoppingCart.containsKey(productName))
                     shoppingCart.put(productName, shoppingCart.get(productName) + quantity);
                 else
                     shoppingCart.put(productName, quantity);
+                
             }
-            for(Integer q : shoppingCart.values())
-                cartSize += q;
         }
-        response.setContentType("text/plain;charset=UTF-8");
         
-        PrintWriter out = response.getWriter();
+        cartSize = getCartSize(shoppingCart);
         out.write("" + cartSize);
         out.close();
     }
@@ -117,4 +122,12 @@ public class Cart extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private int getCartSize(Map<String, Integer> cart) {
+        if(cart == null)
+            return 0;
+        int cartSize = 0;
+        for(Integer q : cart.values())
+            cartSize += q;
+        return cartSize;
+    }
 }

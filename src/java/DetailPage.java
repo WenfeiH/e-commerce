@@ -49,7 +49,6 @@ public class DetailPage extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Pokemon Fans | " + productName + "</title>");
-            out.println("<script src=\"./js/cart.js\" type=\"text/javascript\"></script>");
             out.println("<link href=\"./css/DetailedStyle.css\" rel=\"stylesheet\" />");
             out.println("</head>");
             out.println("<body>");
