@@ -11,25 +11,24 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = {"/DecrementCustomerViewProduct"})
 public class DecrementCustomerViewProduct extends HttpServlet {
     
-        private synchronized int decrementViews(String productName){
-        
+        private synchronized void decrementViews(String productName){  
+            
         ServletContext servletContext = getServletContext(); 
         
-        HashMap<String, Integer> customerViewInfoMap; 
+        HashMap<String, Integer> customerViewInfoMap = (HashMap<String, Integer>) servletContext.getAttribute("CustomerViewInfo");
         
-        if (servletContext.getAttribute("CustomerViewInfo") == null)
-            customerViewInfoMap = new HashMap<String, Integer> (); 
-        else
-            customerViewInfoMap = (HashMap<String, Integer>) servletContext.getAttribute("CustomerViewInfo"); 
+        if (customerViewInfoMap == null)
+            customerViewInfoMap = new HashMap<String, Integer>(); 
         
         if (customerViewInfoMap.containsKey(productName))
             customerViewInfoMap.put(productName, customerViewInfoMap.get(productName) - 1); 
         else
             customerViewInfoMap.put(productName, 0); 
         
-        servletContext.setAttribute("CustomerViewInfo", customerViewInfoMap); 
+        if (customerViewInfoMap.get(productName) <= 0)
+            customerViewInfoMap.remove(productName); 
         
-        return customerViewInfoMap.get(productName); 
+        servletContext.setAttribute("CustomerViewInfo", customerViewInfoMap); 
         
     }
 

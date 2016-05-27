@@ -50,12 +50,12 @@ public class DetailPage extends HttpServlet {
             out.println("<head>");
             out.println("<title>Pokemon Fans | " + productName + "</title>");
             out.println("<link href=\"./css/DetailedStyle.css\" rel=\"stylesheet\" />");
-            out.println("<script type=\"text/javascript\" src=\"js/DecrementBeforeUnload.js\"></script>"); 
             out.println("</head>");
             out.println("<body>");
+            out.println("<script type=\"text/javascript\" src=\"js/DecrementBeforeUnload.js\"></script>"); 
             request.getRequestDispatcher("/html/header.html").include(request, response);
             
-            request.getRequestDispatcher("/IncrementCustomerViewProduct").include(request, response);
+            request.getRequestDispatcher("/IncrementCustomerViewProduct?productName=" + productName).include(request, response);
             
             out.println("<div class=\"details\" >");
             out.println("<table class=\"column\">");

@@ -15,12 +15,10 @@ public class IncrementCustomerViewProduct extends HttpServlet {
         
         ServletContext servletContext = getServletContext(); 
         
-        HashMap<String, Integer> customerViewInfoMap; 
+        HashMap<String, Integer> customerViewInfoMap = (HashMap<String, Integer>) servletContext.getAttribute("CustomerViewInfo"); ; 
         
-        if (servletContext.getAttribute("CustomerViewInfo") == null)
-            customerViewInfoMap = new HashMap<String, Integer> (); 
-        else
-            customerViewInfoMap = (HashMap<String, Integer>) servletContext.getAttribute("CustomerViewInfo"); 
+        if (customerViewInfoMap == null)
+            customerViewInfoMap = new HashMap<String, Integer>(); 
         
         if (customerViewInfoMap.containsKey(productName))
             customerViewInfoMap.put(productName, customerViewInfoMap.get(productName) + 1); 
