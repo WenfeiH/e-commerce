@@ -7,7 +7,7 @@ function decrementBeforeUnload(productName)
 
 		if (xhr.readyState === 4 && xhr.status === 200){
 			
-			alert("DECREMENT"); 
+                        ; 
 			
 		} 
 		
@@ -20,7 +20,7 @@ function decrementBeforeUnload(productName)
 
 window.onbeforeunload = function () {
     
-    var productName = "Pokemon Blue"; 
+    var productName = document.getElementById("product").innerHTML; 
     
     decrementBeforeUnload(productName); 
     

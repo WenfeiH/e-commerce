@@ -3,10 +3,12 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@WebServlet(urlPatterns = {"/DecrementCustomerViewProduct"})
 public class DecrementCustomerViewProduct extends HttpServlet {
     
         private synchronized int decrementViews(String productName){

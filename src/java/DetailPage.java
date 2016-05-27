@@ -50,9 +50,12 @@ public class DetailPage extends HttpServlet {
             out.println("<head>");
             out.println("<title>Pokemon Fans | " + productName + "</title>");
             out.println("<link href=\"./css/DetailedStyle.css\" rel=\"stylesheet\" />");
+            out.println("<script type=\"text/javascript\" src=\"js/DecrementBeforeUnload.js\"></script>"); 
             out.println("</head>");
             out.println("<body>");
             request.getRequestDispatcher("/html/header.html").include(request, response);
+            
+            request.getRequestDispatcher("/IncrementCustomerViewProduct").include(request, response);
             
             out.println("<div class=\"details\" >");
             out.println("<table class=\"column\">");
@@ -107,6 +110,13 @@ public class DetailPage extends HttpServlet {
             
             out.println("</body>");
             out.println("</html>");
+            
+
+            out.close(); 
+            result.close(); 
+            statement.close(); 
+            con.close(); 
+            
         } catch(SQLException e) {
             printErrorPage(out, e);
         } catch(Exception e) {
@@ -136,6 +146,8 @@ public class DetailPage extends HttpServlet {
                 q.offerFirst(productName);
             }
         }
+        
+        
     }
 
     /**

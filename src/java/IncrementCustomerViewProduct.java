@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletContext; 
 import java.util.HashMap; 
+import javax.servlet.annotation.WebServlet;
 
+@WebServlet(urlPatterns = {"/IncrementCustomerViewProduct"})
 public class IncrementCustomerViewProduct extends HttpServlet {
     
     private synchronized int incrementViews(String productName){
