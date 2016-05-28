@@ -1,3 +1,5 @@
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -25,9 +27,6 @@ public class InsertIntoSales extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter(); 
         
         String firstName =  request.getParameter("firstName"); 
         String lastName = request.getParameter("lastName"); 
@@ -98,29 +97,22 @@ public class InsertIntoSales extends HttpServlet {
             
             statement.close(); 
             con.close(); 
-            out.close(); 
             
-            session.setAttribute("ShoppingCart", null);
+            session.setAttribute("ShoppingCart", new HashMap<String, Integer>());
             
-            response.sendRedirect("/Project3/Confirmation.jsp"); 
+            response.sendRedirect("/Project3/Confirmation.jsp?orderNumber=" + orderNumber); 
             
         }
         
         catch (Exception e){
             
-            out.println("<HTML>" +
-		"<HEAD><TITLE>" +
-		"Product: Error" +
-		"</TITLE></HEAD>\n<BODY>" +
-		"<P>Error in doGet: " +
-		e.getMessage() + "</P></BODY></HTML>");
+            return; 
             
         }
         
         finally {
             
-            if (out != null)
-                out.close(); 
+            try { generatedKey.close(); } catch (Exception e) {}
             try { insertSaleStatement.close(); } catch (Exception e) {}
             try { statement.close(); } catch (Exception e) {}
             try { con.close(); } catch (Exception e) {}

@@ -1,3 +1,5 @@
+
+
 public class DatabaseLoginInformation {
     
     public static final String USERNAME = "inf124grp22"; 
