@@ -15,72 +15,107 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.RequestDispatcher; 
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap; 
 
+@WebServlet(urlPatterns = {"/InsertIntoSales"})
 public class InsertIntoSales extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter(); 
+        
         String firstName =  request.getParameter("firstName"); 
         String lastName = request.getParameter("lastName"); 
         String email = request.getParameter("email"); 
         String phoneNumber = request.getParameter("phoneNumber"); 
         String quantity = request.getParameter("quantity"); 
-        String shipping = request.getParameter("shipping"); 
-        String addressLine1 = request.getParameter("addressLine1"); 
-        String addressLine2 = request.getParameter("addressLine2"); 
-        String postCode = request.getParameter("postCode");
+        String shippingMethod = request.getParameter("shippingMethod"); 
+        String addressLine1 = request.getParameter("address1"); 
+        String addressLine2 = request.getParameter("address2"); 
+        String postCode = request.getParameter("postalCode");
         String city = request.getParameter("city"); 
         String state = request.getParameter("state"); 
         String country = request.getParameter("country"); 
-        String cardType = request.getParameter("cardType"); 
+        String cardType = request.getParameter("card"); 
         String cardNumber = request.getParameter("cardNumber"); 
         String securityCode = request.getParameter("securityCode"); 
         String nameOnCard = request.getParameter("nameOnCard"); 
         
         Connection con = null; 
-        PreparedStatement statement = null; 
+        PreparedStatement insertSaleStatement = null; 
+        Statement statement = null; 
         
         try {
             
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = DriverManager.getConnection(DatabaseLoginInformation.LOGINURL, DatabaseLoginInformation.USERNAME, DatabaseLoginInformation.USERPASSWORD);
             
-            String insertSaleCommand = "INSERT INTO sales (orderNumber, productName, Name, email, phoneNumber, quantity, "
-                    + "shipping, address, zipCode, city, state, country, cardType, cardNumber, securityCode, nameOnCard) VALUES (?, ?, ?, ?, ?, ?, "
+            String insertSaleCommand = "INSERT INTO sales (name, email, phoneNumber, quantity, "
+                    + "shipping, address, zipCode, city, state, country, cardType, cardNumber, securityCode, nameOnCard) VALUES (?, ?, ?, ?, "
                     + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?); "; 
             
-            statement = con.prepareStatement(insertSaleCommand);
-            statement.setString(3, firstName + " " + lastName); 
-            statement.setString(4, email); 
-            statement.setString(5, phoneNumber); 
-            statement.setInt(6, Integer.parseInt(quantity)); 
-            statement.setString(7, shipping); 
-            statement.setString(8, addressLine1 + " " + addressLine2); 
-            statement.setInt(9, Integer.parseInt(postCode)); 
-            statement.setString(10, city); 
-            statement.setString(11, state); 
-            statement.setString(12, country); 
-            statement.setString(13, cardType); 
-            statement.setString(14, cardNumber); 
-            statement.setString(15, securityCode); 
-            statement.setString(16, nameOnCard); 
+            insertSaleStatement = con.prepareStatement(insertSaleCommand, Statement.RETURN_GENERATED_KEYS);
+            insertSaleStatement.setString(1, firstName + " " + lastName); 
+            insertSaleStatement.setString(2, email); 
+            insertSaleStatement.setString(3, phoneNumber); 
+            insertSaleStatement.setInt(4, Integer.parseInt(quantity)); 
+            insertSaleStatement.setString(5, shippingMethod); 
+            insertSaleStatement.setString(6, addressLine1 + " " + addressLine2); 
+            insertSaleStatement.setInt(7, Integer.parseInt(postCode)); 
+            insertSaleStatement.setString(8, city); 
+            insertSaleStatement.setString(9, state); 
+            insertSaleStatement.setString(10, country); 
+            insertSaleStatement.setString(11, cardType); 
+            insertSaleStatement.setString(12, cardNumber); 
+            insertSaleStatement.setString(13, securityCode); 
+            insertSaleStatement.setString(14, nameOnCard); 
             
-            int status = statement.executeUpdate(); 
+            int orderNumber = insertSaleStatement.executeUpdate(); 
+            insertSaleStatement.close(); 
+            
+            HttpSession session = request.getSession(true);
+            HashMap<String, Integer> shoppingCart = (HashMap<String, Integer>) session.getAttribute("ShoppingCart"); 
+            statement = con.createStatement(); 
+            
+            for (String productName : shoppingCart.keySet()){
+                
+                String insertProductOfSales = "INSERT INTO products_of_sales (productName, quantity, sales_id) VALUES (\"" + productName + "\", " + quantity + ", " + orderNumber + "); "; 
+                statement.executeUpdate(insertProductOfSales); 
+                
+            }
             
             statement.close(); 
             con.close(); 
+            out.close(); 
+            
+            session.setAttribute("ShoppingCart", null);
+            
+//            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("TODO");
+//            dispatcher.forward(request,response);
             
         }
         
         catch (Exception e){
             
-            
+            out.println("<HTML>" +
+		"<HEAD><TITLE>" +
+		"Product: Error" +
+		"</TITLE></HEAD>\n<BODY>" +
+		"<P>Error in doGet: " +
+		e.getMessage() + "</P></BODY></HTML>");
             
         }
         
         finally {
             
+            if (out != null)
+                out.close(); 
+            try { insertSaleStatement.close(); } catch (Exception e) {}
             try { statement.close(); } catch (Exception e) {}
             try { con.close(); } catch (Exception e) {}
             
