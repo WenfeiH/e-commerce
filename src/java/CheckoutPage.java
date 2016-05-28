@@ -31,6 +31,12 @@ public class CheckoutPage extends HttpServlet {
         HttpSession session = request.getSession(true);
 
         HashMap<String, Integer> shoppingCart =(HashMap<String, Integer>) session.getAttribute("ShoppingCart");
+        
+        if (shoppingCart == null || shoppingCart.isEmpty()){
+            
+            response.sendRedirect("/Project3/MainPage"); 
+            
+        }
 
         out.println("<head>");
         out.println("<title>Pokemon Fans | Products</title>"); 

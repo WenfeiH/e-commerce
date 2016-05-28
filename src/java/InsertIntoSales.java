@@ -33,7 +33,6 @@ public class InsertIntoSales extends HttpServlet {
         String lastName = request.getParameter("lastName"); 
         String email = request.getParameter("email"); 
         String phoneNumber = request.getParameter("phoneNumber"); 
-        String quantity = request.getParameter("quantity"); 
         String shippingMethod = request.getParameter("shippingMethod"); 
         String addressLine1 = request.getParameter("address1"); 
         String addressLine2 = request.getParameter("address2"); 
@@ -49,33 +48,41 @@ public class InsertIntoSales extends HttpServlet {
         Connection con = null; 
         PreparedStatement insertSaleStatement = null; 
         Statement statement = null; 
+        ResultSet generatedKey = null; 
         
         try {
             
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = DriverManager.getConnection(DatabaseLoginInformation.LOGINURL, DatabaseLoginInformation.USERNAME, DatabaseLoginInformation.USERPASSWORD);
             
-            String insertSaleCommand = "INSERT INTO sales (name, email, phoneNumber, quantity, "
+            String insertSaleCommand = "INSERT INTO sales (name, email, phoneNumber, "
                     + "shipping, address, zipCode, city, state, country, cardType, cardNumber, securityCode, nameOnCard) VALUES (?, ?, ?, ?, "
-                    + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?); "; 
+                    + "?, ?, ?, ?, ?, ?, ?, ?, ?); "; 
             
             insertSaleStatement = con.prepareStatement(insertSaleCommand, Statement.RETURN_GENERATED_KEYS);
             insertSaleStatement.setString(1, firstName + " " + lastName); 
             insertSaleStatement.setString(2, email); 
             insertSaleStatement.setString(3, phoneNumber); 
-            insertSaleStatement.setInt(4, Integer.parseInt(quantity)); 
-            insertSaleStatement.setString(5, shippingMethod); 
-            insertSaleStatement.setString(6, addressLine1 + " " + addressLine2); 
-            insertSaleStatement.setInt(7, Integer.parseInt(postCode)); 
-            insertSaleStatement.setString(8, city); 
-            insertSaleStatement.setString(9, state); 
-            insertSaleStatement.setString(10, country); 
-            insertSaleStatement.setString(11, cardType); 
-            insertSaleStatement.setString(12, cardNumber); 
-            insertSaleStatement.setString(13, securityCode); 
-            insertSaleStatement.setString(14, nameOnCard); 
+            insertSaleStatement.setString(4, shippingMethod); 
+            if (addressLine2 == null || addressLine2.equals(""))
+                insertSaleStatement.setString(5, addressLine1); 
+            else
+                insertSaleStatement.setString(5, addressLine1 + " " + addressLine2); 
+            insertSaleStatement.setInt(6, Integer.parseInt(postCode)); 
+            insertSaleStatement.setString(7, city); 
+            insertSaleStatement.setString(8, state); 
+            insertSaleStatement.setString(9, country); 
+            insertSaleStatement.setString(10, cardType); 
+            insertSaleStatement.setString(11, cardNumber); 
+            insertSaleStatement.setString(12, securityCode); 
+            insertSaleStatement.setString(13, nameOnCard); 
             
-            int orderNumber = insertSaleStatement.executeUpdate(); 
+            insertSaleStatement.executeUpdate(); 
+            generatedKey = insertSaleStatement.getGeneratedKeys(); 
+            generatedKey.next(); 
+            int orderNumber = generatedKey.getInt(1); 
+            
+            generatedKey.close(); 
             insertSaleStatement.close(); 
             
             HttpSession session = request.getSession(true);
@@ -84,7 +91,7 @@ public class InsertIntoSales extends HttpServlet {
             
             for (String productName : shoppingCart.keySet()){
                 
-                String insertProductOfSales = "INSERT INTO products_of_sales (productName, quantity, sales_id) VALUES (\"" + productName + "\", " + quantity + ", " + orderNumber + "); "; 
+                String insertProductOfSales = "INSERT INTO products_of_sales (productName, quantity, sales_id) VALUES (\"" + productName + "\", " + shoppingCart.get(productName) + ", " + orderNumber + "); "; 
                 statement.executeUpdate(insertProductOfSales); 
                 
             }
@@ -95,8 +102,7 @@ public class InsertIntoSales extends HttpServlet {
             
             session.setAttribute("ShoppingCart", null);
             
-//            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("TODO");
-//            dispatcher.forward(request,response);
+            response.sendRedirect("/Project3/Confirmation.jsp"); 
             
         }
         
