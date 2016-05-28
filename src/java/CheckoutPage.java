@@ -6,7 +6,11 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet; 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import javax.servlet.annotation.WebServlet;
+import java.text.DecimalFormat; 
 
 @WebServlet(urlPatterns = {"/CheckoutPage"})
 public class CheckoutPage extends HttpServlet {
@@ -60,12 +65,88 @@ public class CheckoutPage extends HttpServlet {
 
             }
 
+            out.println("</table>");
+            
+            
+            Connection con = null; 
+            Statement statement = null; 
+            ResultSet result = null; 
+            
+            out.println("<table>"); 
+            
+            if (shoppingCart.size() > 0){
+                
+                out.println("<tr>"); 
+                out.println("<td><u>Product Name</u></td>"); 
+                out.println("<td><u>Quantity</u></td>"); 
+                out.println("<td><u>Price</u></td>"); 
+                out.println("<td><u>Total for Product</u></td>"); 
+                out.println("</tr>"); 
+                
+            }
+            
+            double totalPrice = 0.0; 
+            DecimalFormat df = new DecimalFormat();
+            df.setMinimumFractionDigits(2);
+            
+            for (String productName : shoppingCart.keySet()){
+                
+                double price = 0.0;  
+                
+                out.println("<tr>"); 
+                out.println("<td>" + productName + "</td>"); 
+                out.println("<td>" + shoppingCart.get(productName) + "</td>"); 
+                
+                try {
+                    
+                    Class.forName("com.mysql.jdbc.Driver").newInstance();
+                    con = DriverManager.getConnection(DatabaseLoginInformation.LOGINURL, DatabaseLoginInformation.USERNAME, DatabaseLoginInformation.USERPASSWORD);
+                    
+                    statement = con.createStatement(); 
+                    String priceQuery = "SELECT price FROM products WHERE name = \"" + productName + "\"; "; 
+                    result = statement.executeQuery(priceQuery); 
+                    result.next(); 
+                    
+                    price = result.getDouble(1); 
+                    
+                    result.close(); 
+                    statement.close(); 
+                    con.close(); 
+                    
+                }
+                
+                catch (Exception e){
+                
+                    out.println("<HTML>" +
+                    "<HEAD><TITLE>" +
+                    "Product: Error" +
+                    "</TITLE></HEAD>\n<BODY>" +
+                    "<P>Error in doGet: " +
+                    e.getMessage() + "</P></BODY></HTML>");
+                    return; 
+                
+                }
+                
+                out.println("<td>$" + df.format(price) + "</td>"); 
+                out.println("<td>$" + df.format(price * shoppingCart.get(productName)) + "</td>");
+                out.println("</tr>"); 
+                
+                totalPrice += price * shoppingCart.get(productName); 
+                
+            }
+            
+            out.println("<tr>"); 
+            out.println("<td></td>"); 
+            out.println("<td></td>"); 
+            out.println("<td><b>Total: </b></td>"); 
+            out.println("<td><b>$" + df.format(totalPrice) + "</b></td>"); 
             out.println("</table>"); 
 
         }
+        
 
         out.println("<div class=\"payment\">\n" +
-"            <form action=\"\" onSubmit=\"return check()\" method=\"post\">\n" +
+"            <form action=\"InsertIntoSales\" onSubmit=\"return check()\" method=\"post\">\n" +
 "                <fieldset id=\"payment\">\n" +
 "                    <legend><h4>Payment Information</h4></legend>\n" +
 "                    <table>\n" +
