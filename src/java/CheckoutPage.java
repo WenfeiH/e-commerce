@@ -45,6 +45,7 @@ public class CheckoutPage extends HttpServlet {
         out.println("<link href=\"css/list.css\" rel=\"stylesheet\" />"); 
         out.println("<link href=\"css/common.css\" rel=\"stylesheet\" />"); 
         out.println("<link href=\"css/DetailedStyle.css\" rel=\"stylesheet\">");
+        out.println("<link href=\"css/CheckOut.css\" rel=\"stylesheet\">");
         out.println("<script type=\"text/javascript\" src=\"js/CheckoutPage.js\"></script>"); 
         out.println("<script type=\"text/javascript\" src=\"js/check.js\"></script>"); 
         out.println("</head>"); 
@@ -56,7 +57,7 @@ public class CheckoutPage extends HttpServlet {
 
         if (shoppingCart != null){
 
-            out.println("<table>"); 
+            out.println("<table class=\"productTable\">"); 
 
             for (String product : shoppingCart.keySet()){
 
@@ -65,10 +66,10 @@ public class CheckoutPage extends HttpServlet {
                 String ref = "/Project3/DetailPage?name=" + product;
 
                 out.println("<tr>"); 
-                out.println("<td><a href=\"" + ref + "\"><img class=\"thumbnail1\" src=\"" + imageSource + ".jpg\"></a></td>");
-                out.println("<td><input id=\"" + product + " Input ID" + "\" type=\"number\" value=\"" + shoppingCart.get(product) + "\" min=\"1\"></td>");
-                out.println("<td><button type=\"button\" onClick=\"updateCart('" + product + "', document.getElementById('" + product + " Input ID').value);\">Update</button></td>"); 
-                out.println("<td><button type=\"button\" onClick=\"removeItem('" + product + "')\">Remove</button></td>"); 
+                out.println("<td class=\"productData\"><a href=\"" + ref + "\"><img src=\"" + imageSource + ".jpg\"></a></td>");
+                out.println("<td class=\"productData\">Quantity: <input id=\"" + product + " Input ID" + "\" type=\"number\" value=\"" + shoppingCart.get(product) + "\" min=\"1\"></td>");
+                out.println("<td class=\"productData\"><button type=\"button\" onClick=\"updateCart('" + product + "', document.getElementById('" + product + " Input ID').value);\">Update</button></td>"); 
+                out.println("<td class=\"productData\"><button type=\"button\" onClick=\"removeItem('" + product + "')\">Remove</button></td>"); 
                 out.println("</tr>"); 
 
             }
@@ -80,7 +81,7 @@ public class CheckoutPage extends HttpServlet {
             Statement statement = null; 
             ResultSet result = null; 
             
-            out.println("<table>"); 
+            out.println("<table class=\"priceTable\">"); 
             
             if (shoppingCart.size() > 0){
                 
@@ -135,8 +136,8 @@ public class CheckoutPage extends HttpServlet {
                 
                 }
                 
-                out.println("<td>$" + df.format(price) + "</td>"); 
-                out.println("<td>$" + df.format(price * shoppingCart.get(productName)) + "</td>");
+                out.println("<td class=\"priceData\">$" + df.format(price) + "</td>"); 
+                out.println("<td class=\"priceData\">$" + df.format(price * shoppingCart.get(productName)) + "</td>");
                 out.println("</tr>"); 
                 
                 totalPrice += price * shoppingCart.get(productName); 

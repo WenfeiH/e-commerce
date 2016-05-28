@@ -10,9 +10,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href=\"css/list.css\" rel=\"stylesheet\" />
-        <link href=\"css/common.css\" rel=\"stylesheet\" />
-        <link href=\"css/DetailedStyle.css\" rel=\"stylesheet\">
+        <link href="css/list.css" rel="stylesheet" />
+        <link href="css/common.css" rel="stylesheet" />
+        <link href="css/DetailedStyle.css" rel="stylesheet">
         <title>Confirmation Page</title>
     </head>
     <body>
