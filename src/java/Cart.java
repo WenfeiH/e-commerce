@@ -35,19 +35,41 @@ public class Cart extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Cart</title>");            
+            out.println("<title>Servlet Cart</title>");    
+            out.println("<link href=\"css/list.css\" rel=\"stylesheet\" />"); 
+            out.println("<link href=\"css/common.css\" rel=\"stylesheet\" />"); 
+            out.println("<link href=\"css/DetailedStyle.css\" rel=\"stylesheet\">");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Cart at " + request.getContextPath() + "</h1>");
+            
+            request.getRequestDispatcher("/html/header.html").include(request, response);
+            
+            out.println("<h1 align=\"center\">Shopping Cart</h1>");
             
             HttpSession session = request.getSession(true);
             Map<String, Integer> shoppingCart = (Map<String, Integer>) session.getAttribute("ShoppingCart");
             if(shoppingCart == null)
                 shoppingCart = new HashMap<>();
+            if (shoppingCart.isEmpty())
+                out.println("<p>Shopping Cart is Empty</p>"); 
             out.println("<table>");
+            if (shoppingCart.size() > 0)
+                out.println("<tr><td><u><b>Product</b></u></td><td><u><b>Quantity</b></u></td></tr>"); 
             for(Map.Entry<String, Integer> entry : shoppingCart.entrySet())
                 out.println("<tr><td> " + entry.getKey() + " </td><td> " + entry.getValue() + "</td></tr>");
+            out.println("</table>"); 
             out.println();
+            
+            out.println("<script type=\"text/javascript\">");
+            out.println("function goToCheckoutPage(){");
+            out.println("document.location.href = \"CheckoutPage\"; ");
+            out.println("}"); 
+            out.println("</script>"); 
+            
+            if (shoppingCart.size() > 0)
+                out.println("<button type=\"button\" onClick=\"goToCheckoutPage()\">Checkout Page</button>");
+            
+            request.getRequestDispatcher("/html/footer.html").include(request, response);
             out.println("</body>");
             out.println("</html>");
             out.close();
