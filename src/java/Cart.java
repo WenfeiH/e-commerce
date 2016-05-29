@@ -39,6 +39,7 @@ public class Cart extends HttpServlet {
             out.println("<link href=\"css/list.css\" rel=\"stylesheet\" />"); 
             out.println("<link href=\"css/common.css\" rel=\"stylesheet\" />"); 
             out.println("<link href=\"css/DetailedStyle.css\" rel=\"stylesheet\">");
+            out.println("<link href=\"css/Cart.css\" rel=\"stylesheet\">");
             out.println("</head>");
             out.println("<body>");
             
@@ -52,11 +53,11 @@ public class Cart extends HttpServlet {
                 shoppingCart = new HashMap<>();
             if (shoppingCart.isEmpty())
                 out.println("<p>Shopping Cart is Empty</p>"); 
-            out.println("<table>");
+            out.println("<table class=\"quantityTable\">");
             if (shoppingCart.size() > 0)
-                out.println("<tr><td><u><b>Product</b></u></td><td><u><b>Quantity</b></u></td></tr>"); 
+                out.println("<tr><td class=\"quantityData\"><u><b>Product</b></u></td><td class=\"quantityData\"><u><b>Quantity</b></u></td></tr>"); 
             for(Map.Entry<String, Integer> entry : shoppingCart.entrySet())
-                out.println("<tr><td> " + entry.getKey() + " </td><td> " + entry.getValue() + "</td></tr>");
+                out.println("<tr><td class=\"quantityData\"> " + entry.getKey() + " </td><td class=\"quantityData\"> " + entry.getValue() + "</td></tr>");
             out.println("</table>"); 
             out.println();
             
@@ -66,8 +67,11 @@ public class Cart extends HttpServlet {
             out.println("}"); 
             out.println("</script>"); 
             
-            if (shoppingCart.size() > 0)
-                out.println("<button type=\"button\" onClick=\"goToCheckoutPage()\">Checkout Page</button>");
+            if (shoppingCart.size() > 0){
+                out.println("<div class=\"buttonWrapper\">"); 
+                out.println("<button class=\"buttonCheckout\" type=\"button\" onClick=\"goToCheckoutPage()\">Checkout Page</button>");
+                out.println("</div>"); 
+            }
             
             request.getRequestDispatcher("/html/footer.html").include(request, response);
             out.println("</body>");

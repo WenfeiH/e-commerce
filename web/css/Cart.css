@@ -1,0 +1,24 @@
+.quantityTable {
+    
+    border: 2px solid black; 
+    text-align: center; 
+    margin-bottom: 50px;
+    margin-top: 50px; 
+    
+}
+
+.quantityData {
+    
+    border: 1px solid black; 
+    width: 50px; 
+    height: 50px; 
+    
+}
+
+.buttonWrapper {
+    
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px; 
+    
+}

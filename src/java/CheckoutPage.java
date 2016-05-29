@@ -86,10 +86,10 @@ public class CheckoutPage extends HttpServlet {
             if (shoppingCart.size() > 0){
                 
                 out.println("<tr>"); 
-                out.println("<td><u>Product Name</u></td>"); 
-                out.println("<td><u>Quantity</u></td>"); 
-                out.println("<td><u>Price</u></td>"); 
-                out.println("<td><u>Total for Product</u></td>"); 
+                out.println("<td class=\"priceData\"><u>Product Name</u></td>"); 
+                out.println("<td class=\"priceData\"><u>Quantity</u></td>"); 
+                out.println("<td class=\"priceData\"><u>Price</u></td>"); 
+                out.println("<td class=\"priceData\"><u>Total for Product</u></td>"); 
                 out.println("</tr>"); 
                 
             }
@@ -103,8 +103,8 @@ public class CheckoutPage extends HttpServlet {
                 double price = 0.0;  
                 
                 out.println("<tr>"); 
-                out.println("<td>" + productName + "</td>"); 
-                out.println("<td>" + shoppingCart.get(productName) + "</td>"); 
+                out.println("<td class=\"priceData\">" + productName + "</td>"); 
+                out.println("<td class=\"priceData\">" + shoppingCart.get(productName) + "</td>"); 
                 
                 try {
                     
@@ -145,10 +145,10 @@ public class CheckoutPage extends HttpServlet {
             }
             
             out.println("<tr>"); 
-            out.println("<td></td>"); 
-            out.println("<td></td>"); 
-            out.println("<td><b>Total: </b></td>"); 
-            out.println("<td><b>$" + df.format(totalPrice) + "</b></td>"); 
+            out.println("<td class=\"priceData\"></td>"); 
+            out.println("<td class=\"priceData\"></td>"); 
+            out.println("<td class=\"priceData\"><b>Total: </b></td>"); 
+            out.println("<td class=\"priceData\"><b>$" + df.format(totalPrice) + "</b></td>"); 
             out.println("</table>"); 
 
         }
