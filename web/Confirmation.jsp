@@ -13,6 +13,7 @@
         <link href="css/list.css" rel="stylesheet" />
         <link href="css/common.css" rel="stylesheet" />
         <link href="css/DetailedStyle.css" rel="stylesheet">
+        <link href="css/InsertIntoSales.css" rel="stylesheet">
         <title>Confirmation Page</title>
     </head>
     <body>
@@ -40,21 +41,22 @@
         
         %>
         
-        <table>
+        <table class="salesTable">
+            
+            <tr>
+                <td class="listOfProductDataColumn">Product Name</td>
+                <td class="listOfProductDataColumn">Quantity</td>
+            </tr>
             
         <%
             
             while (result.next()){
-                
+            
         %>
 
                 <tr>
-                    <td>Product Name: </td>
-                    <td><%=result.getString("productName")%>
-                </tr>
-                <tr>
-                    <td>Quantity: </td>
-                    <td><%=result.getString("quantity")%>
+                    <td class="listOfProductData"><%=result.getString("productName")%></td>
+                    <td class="listOfProductData"><%=result.getString("quantity")%></td>
                 </tr>
         
         <%        
@@ -74,62 +76,62 @@
             
         %>
         
-        <table>
+        <table class="salesTable">
             <tr>
-                <td>Order Number </td>
-                <td><%=result.getString("orderNumber")%></td>
+                <td class="salesDataColumn">Order Number </td>
+                <td class="salesData"><%=result.getString("orderNumber")%></td>
             </tr>
             <tr>
-                <td>Name: </td>
-                <td><%=result.getString("name")%></td>
+                <td class="salesDataColumn">Name: </td>
+                <td class="salesData"><%=result.getString("name")%></td>
             </tr>
             <tr>
-                <td>Email: </td>
-                <td><%=result.getString("email")%></td>
+                <td class="salesDataColumn">Email: </td>
+                <td class="salesData"><%=result.getString("email")%></td>
             </tr>
             <tr>
-                <td>Phone Number: </td>
-                <td><%=result.getString("phoneNumber")%></td>
+                <td class="salesDataColumn">Phone Number: </td>
+                <td class="salesData"><%=result.getString("phoneNumber")%></td>
             </tr>
             <tr>
-                <td>Shipping Method: </td>
-                <td><%=result.getString("shipping")%></td>
+                <td class="salesDataColumn">Shipping Method: </td>
+                <td class="salesData"><%=result.getString("shipping")%></td>
             </tr>
             <tr>
-                <td>Address: </td>
-                <td><%=result.getString("address")%></td>
+                <td class="salesDataColumn">Address: </td>
+                <td class="salesData"><%=result.getString("address")%></td>
             </tr>
             <tr>
-                <td>Zip Code: </td>
-                <td><%=result.getString("zipCode")%></td>
+                <td class="salesDataColumn">Zip Code: </td>
+                <td class="salesData"><%=result.getString("zipCode")%></td>
             </tr>
             <tr>
-                <td>City: </td>
-                <td><%=result.getString("city")%></td>
+                <td class="salesDataColumn">City: </td>
+                <td class="salesData"><%=result.getString("city")%></td>
             </tr>
             <tr>
-                <td>State: </td>
-                <td><%=result.getString("state")%></td>
+                <td class="salesDataColumn">State: </td>
+                <td class="salesData"><%=result.getString("state")%></td>
             </tr>
             <tr>
-                <td>Country: </td>
-                <td><%=result.getString("country")%></td>
+                <td class="salesDataColumn">Country: </td>
+                <td class="salesData"><%=result.getString("country")%></td>
             </tr>
             <tr>
-                <td>Card Type: </td>
-                <td><%=result.getString("cardType")%></td>
+                <td class="salesDataColumn">Card Type: </td>
+                <td class="salesData"><%=result.getString("cardType")%></td>
             </tr>
             <tr>
-                <td>Card Number: </td>
-                <td><%=result.getString("cardNumber")%></td>
+                <td class="salesDataColumn">Card Number: </td>
+                <td class="salesData"><%=result.getString("cardNumber")%></td>
             </tr>
             <tr>
-                <td>Security Code: </td>
-                <td><%=result.getString("securityCode")%></td>
+                <td class="salesDataColumn">Security Code: </td>
+                <td class="salesData"><%=result.getString("securityCode")%></td>
             </tr>
             <tr>
-                <td>Name on Card: </td>
-                <td><%=result.getString("nameOnCard")%></td>
+                <td class="salesDataColumn">Name on Card: </td>
+                <td class="salesData"><%=result.getString("nameOnCard")%></td>
             </tr>
         </table>
         

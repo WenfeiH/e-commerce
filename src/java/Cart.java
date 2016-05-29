@@ -55,9 +55,13 @@ public class Cart extends HttpServlet {
                 out.println("<p>Shopping Cart is Empty</p>"); 
             out.println("<table class=\"quantityTable\">");
             if (shoppingCart.size() > 0)
-                out.println("<tr><td class=\"quantityData\"><u><b>Product</b></u></td><td class=\"quantityData\"><u><b>Quantity</b></u></td></tr>"); 
-            for(Map.Entry<String, Integer> entry : shoppingCart.entrySet())
-                out.println("<tr><td class=\"quantityData\"> " + entry.getKey() + " </td><td class=\"quantityData\"> " + entry.getValue() + "</td></tr>");
+                out.println("<tr><td class=\"quantityData\" style=\"font-size:40px;\"><u><b>Product</b></u></td><td class=\"quantityData\" style=\"font-size:40px;\"><u><b>Product Name</b></u></td><td class=\"quantityData\" style=\"font-size:40px;\"><u><b>Quantity</b></u></td></tr>"); 
+            for(Map.Entry<String, Integer> entry : shoppingCart.entrySet()){
+                String dir = Utils.parseName(entry.getKey());
+                String imageSource = "Images/" + dir + "/" + dir; 
+                String ref = "/Project3/DetailPage?name=" + entry.getKey();
+                out.println("<tr><td class=\"quantityData\"><a href=\"" + ref + "\"><img src=\"" + imageSource + ".jpg\"></a></td><td class=\"quantityData\"> " + entry.getKey() + " </td><td class=\"quantityData\"> " + entry.getValue() + "</td></tr>");
+            }
             out.println("</table>"); 
             out.println();
             
