@@ -153,7 +153,6 @@ public class CheckoutPage extends HttpServlet {
 
         }
         
-
         out.println("<div class=\"payment\">\n" +
 "            <form action=\"InsertIntoSales\" onSubmit=\"return check()\" method=\"post\">\n" +
 "                <fieldset id=\"payment\">\n" +
@@ -185,6 +184,12 @@ public class CheckoutPage extends HttpServlet {
 "                                        <p id=\"phonealert\" class=\"alert\"/></p>\n" +
 "                                    </td>\n" +
 "                                </tr>  \n" +
+"                                <tr>\n" +
+"                                    <td class=\"ExtraInfo1\">Quantity:</td>\n" +
+"                                    <td class=\"ExtraInfo2\"><input id=\"quantity\" name=\"quantity\" type=\"number\" class=\"textbox\" value=\"1\" min=\"1\" />\n" +
+"                                        <p id=\"quantityalert\" class=\"alert\"/></p>\n" +
+"                                    </td>\n" +
+"                                </tr>\n" +
 "                                <tr>\n" +
 "                                    <td class=\"ExtraInfo1\">Shipping:</td>\n" +
 "                                    <td class=\"ExtraInfo2\">\n" +
@@ -284,7 +289,7 @@ public class CheckoutPage extends HttpServlet {
 "                </fieldset>\n" +
 "            </form>\n" +
 "        </div>   "); 
-
+        
         request.getRequestDispatcher("/html/footer.html").include(request, response);
 
         out.println("</body>");

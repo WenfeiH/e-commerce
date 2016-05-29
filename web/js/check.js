@@ -1,4 +1,5 @@
 function check() {
+     
     clear_alert();
     var txt1 = "Please fill in the blank";
     var txt2 = "Please check your credit card number";
@@ -22,7 +23,7 @@ function check() {
         document.getElementById('holder').value === "" ){
         alert("Please complete all the required fields.");
         hasProblem = true;
-
+        
         if(document.getElementById('firstname').value === ""){
             document.getElementById("firstnamealert").innerHTML = txt1;
         } else {
@@ -121,7 +122,7 @@ function check() {
 
         if (!nameCheck(document.getElementById('lastname').value)){
             document.getElementById("lastnamealert").innerHTML ="Last Name can only contain Alphabetical Characters and Spaces. (No Numbers, Symbols, etc.)"; 
-            hasProblem = true;
+            hasProblem = true; 
         }
         else{
             document.getElementById("lastnamealert").innerHTML ="";
@@ -137,8 +138,8 @@ function check() {
         if (!isNumeric(document.getElementById('phone').value)){
             document.getElementById("phonealert").innerHTML ="Phone Number can only contain Numbers. (No Letters, Spaces, Symbols, etc.)"; 
             hasProblem = true;
-        } else if(document.getElementById('phone').value.length != 10) {
-            document.getElementById("phonealert").innerHTML = "Phone number should be 10-digit long.";
+        } else if(document.getElementById('phone').value.length !== 10) {
+            document.getElementById("phonealert").innerHTML = "Phone number should be 10-digit long."; 
             hasProblem = true;
         }else{
             document.getElementById("phonealert").innerHTML ="";
@@ -147,7 +148,7 @@ function check() {
         if (!isNumeric(document.getElementById('postal').value)){
             document.getElementById("postalalert").innerHTML ="Postcode can only contain Numbers. (No Letters, Spaces, Symbols, etc.)"; 
             hasProblem = true;
-        }else if(document.getElementById('postal').value.length != 5){
+        }else if(document.getElementById('postal').value.length !== 5){
             document.getElementById("postalalert").innerHTML ="Please provide a US post code with 5 digits."; 
             hasProblem = true;
         }else{
@@ -164,9 +165,8 @@ function check() {
             document.getElementById("cardnumalert").innerHTML = "";
         }   
 
-        secureCode = document.getElementById('secure').value;
         if(document.getElementById("American Express").checked===true){
-            if(secureCode.length!==4 || !isNumeric(secureCode)){
+            if(document.getElementById('secure').value.length!==4){
                 document.getElementById("securealert").innerHTML = txt4;
                 hasProblem = true;
             } 
@@ -174,7 +174,7 @@ function check() {
                 document.getElementById("securealert").innerHTML = "";
             }
         }else{      
-            if(secureCode.length!==3 || !isNumeric(secureCode)){
+            if(document.getElementById('secure').value.length!==3){
                 document.getElementById("securealert").innerHTML = txt4;
                 hasProblem = true;
             } 
@@ -190,7 +190,8 @@ function check() {
             document.getElementById("holderalert").innerHTML ="";
         }
     }
-
+    
+    
     return !hasProblem; 
     
 }
